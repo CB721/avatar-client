@@ -1,13 +1,13 @@
 <template>
     <div class="filter-item">
         <div v-if="section === 'option'">
-            <p>{{text.name}}</p>
+            <p v-on:click="selectFilter(text.name)">{{text.name}}</p>
         </div>
         <div v-else-if="section === 'filter'">
-            <p>{{text.name}}</p>
+            <p v-on:click="selectFilter(text)">{{text}}</p>
         </div>
         <div v-else>
-            <p>{{text.name}}</p>
+            <p>{{text}}</p>
         </div>
     </div>
 </template>
@@ -17,7 +17,15 @@ export default {
     name: "FilterItem",
     props: {
         text: String,
-        section: String
+        section: String,
+        action: Function
+    },
+    methods: {
+        selectFilter(filter) {
+            if (this.action) {
+                this.action(filter);
+            }
+        }
     }
 }
 

@@ -13,13 +13,13 @@
     <div class="row">
       <div class="col-4">
         <OptionHeader option="Category" />
-        <FilterSection v-bind:filters="filters" />
+        <FilterSection v-bind="{filters: filters, action: categoryFilter}" section="option" />
       </div>
-      <div class="col-4">
+      <div v-if="selectedFilters.length" class="col-4">
         <OptionHeader option="Filter" />
-        <FilterSection v-bind:filters="filters" />
+        <FilterSection v-bind="{filters: selectedFilters, action: selectFilter}" section="filter" />
       </div>
-      <div class="col-4">
+      <div v-if="results.length" class="col-4">
         <OptionHeader option="Results" />
         <FilterSection v-bind:filters="filters" />
       </div>
@@ -91,8 +91,36 @@ export default {
           multipleFilters: false,
           filter: ["all", "season_num"]
         }
-      ]
+      ],
+      categorySelection: "",
+      filterSelection: "",
+      selectedFilters: [],
+      results: []
     };
+  },
+  methods: {
+    categoryFilter(filter) {
+      this.categorySelection = filter;
+      for (let i = 0; i < this.filters.length; i++) {
+        if (this.filters[i].name === filter) {
+          this.selectedFilters = this.filters[i].filter;
+        }
+      }
+      this.filterSelection = ""
+    },
+    selectFilter(filter) {
+      this.filterSelection = filter;
+    }
+  },
+  watch: {
+    selectedFilters: function () {
+      this.results = []
+    },
+    filterSelection: function () {
+      if (this.filterSelection) {
+        console.log(this.filterSelection);
+      }
+    }
   }
 };
 </script>

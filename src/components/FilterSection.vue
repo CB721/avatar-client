@@ -1,7 +1,9 @@
 <template>
   <section class="filter">
     <div v-for="filter in filters" v-bind:key="filter.name">
-        <FilterItem v-bind="{text: filter, section: 'option'}" />
+        <FilterItem 
+            v-bind="{text: filter, section: section, action: selectFilter}"
+        />
     </div>
   </section>
 </template>
@@ -16,7 +18,16 @@ export default {
     FilterItem
   },
   props: {
-    filters: Array
+    filters: Array,
+    action: Function,
+    section: String
+  },
+  methods: {
+      selectFilter(filter) {
+          if (this.action) {
+              this.action(filter);
+          }
+      }
   }
 };
 </script>
