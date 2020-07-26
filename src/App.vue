@@ -21,7 +21,7 @@
       </div>
       <div v-if="results.length" class="col-4">
         <OptionHeader option="Results" />
-        <FilterSection v-bind:filters="filters" />
+        <FilterSection v-bind:filters="results" />
       </div>
     </div>
     <HeadSection name="Get API Key" />
@@ -54,6 +54,7 @@ import Navbar from "./components/Navbar";
 import HeadSection from "./components/HeadSection";
 import OptionHeader from "./components/OptionHeader";
 import FilterSection from "./components/FilterSection";
+import API from "./utils/api";
 
 export default {
   name: "App",
@@ -94,6 +95,7 @@ export default {
       ],
       categorySelection: "",
       filterSelection: "",
+      subFilterSelection: "",
       selectedFilters: [],
       results: []
     };
@@ -117,8 +119,21 @@ export default {
       this.results = []
     },
     filterSelection: function () {
-      if (this.filterSelection) {
-        console.log(this.filterSelection);
+      if (!this.filterSelection) return;
+      if (this.categorySelection === "Character") {
+        if (this.filterSelection === "all" || this.filterSelection === "element") {
+          API.allCharacters(this.subFilterSelection)
+            .then(res => {
+              this.results = res.data
+            })
+            .catch(err => console.log(err))
+        } else {
+          API.oneCharacter(this.subFilterSelection)
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => console.log(err))
+        }
       }
     }
   }

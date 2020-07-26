@@ -14,6 +14,7 @@
   },
   "homepage": "https://github.com/CB721/avatar-client#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
