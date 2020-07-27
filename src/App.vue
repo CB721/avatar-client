@@ -34,6 +34,7 @@
     <HeadSection name="Examples" />
     <div class="row">
       <div class="col-4">
+        <div id="example-section" />
         <OptionHeader option="Category" />
         <FilterSection v-bind="{filters: filters, action: categoryFilter}" section="option" />
       </div>
@@ -57,6 +58,7 @@
     <div class="row">
       <div class="col-6">
         <OptionHeader option="Enter your email" />
+        <div id="key-section" />
         <form>
           <input
             v-model="email"

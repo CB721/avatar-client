@@ -4,9 +4,9 @@
       <h1>{{ title }}</h1>
     </div>
     <ul class="links">
-      <li>Details</li>
-      <li>Examples</li>
-      <li>API Key</li>
+      <li v-on:click="scrollToSection('detail-section')">Details</li>
+      <li v-on:click="scrollToSection('example-section')">Examples</li>
+      <li v-on:click="scrollToSection('key-section')">API Key</li>
     </ul>
   </nav>
 </template>
@@ -16,6 +16,12 @@ export default {
   name: "Navbar",
   props: {
     title: String
+  },
+  methods: {
+    scrollToSection(id) {
+      const section = document.getElementById(id);
+      section.scrollIntoView();
+    }
   }
 };
 </script>
