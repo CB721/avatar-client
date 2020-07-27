@@ -1,10 +1,10 @@
 <template>
   <section class="filter">
-    <div v-for="filter in filters" v-bind:key="filter.name">
-        <FilterItem 
-            v-bind="{text: filter, section: section, action: selectFilter}"
-        />
-    </div>
+      <div v-for="(filter,index) in filters" v-bind:key="index">
+          <FilterItem 
+              v-bind="{text: filter, section: section, action: selectFilter}"
+          />
+      </div>
   </section>
 </template>
 

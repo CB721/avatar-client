@@ -4,7 +4,7 @@
       <h1>{{ title }}</h1>
     </div>
     <ul class="links">
-      <li>About</li>
+      <li>Details</li>
       <li>Examples</li>
       <li>API Key</li>
     </ul>
@@ -22,9 +22,10 @@ export default {
 
 <style scoped>
 nav {
-  width: 99.4vw;
+  width: 99.6vw;
   min-height: 10vh;
   border: 0.2vw solid pink;
+  display: block;
 }
 .title,
 .links {

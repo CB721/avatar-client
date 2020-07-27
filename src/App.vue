@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <Navbar title="Avatar: The API" />
-    <HeadSection name="About" />
+    <HeadSection name="Details" />
     <div class="row">
       <div class="col-12">
-        <section id="about-section">
+        <section id="detail-section">
           <p>Mauris at elit efficitur quam pulvinar hendrerit sit amet at lacus. Curabitur ac tortor suscipit lectus dignissim fermentum. Suspendisse accumsan ex ex, ac egestas diam pulvinar ac. Pellentesque sagittis diam justo, sed pretium sapien venenatis at. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at ultricies metus. Proin nec blandit urna. In mattis nec nulla in vestibulum. Fusce ut efficitur purus.</p>
         </section>
       </div>
@@ -70,7 +70,7 @@ export default {
         {
           name: "Character",
           multipleFilters: false,
-          filter: ["all", "element", "id"]
+          filter: ["all", "element"]
         },
         {
           name: "Quote",
@@ -85,17 +85,16 @@ export default {
         {
           name: "Episode",
           multipleFilters: false,
-          filter: ["all", "id"]
+          filter: ["all"]
         },
         {
           name: "Season",
           multipleFilters: false,
-          filter: ["all", "season_num"]
+          filter: ["all"]
         }
       ],
       categorySelection: "",
       filterSelection: "",
-      subFilterSelection: "",
       selectedFilters: [],
       results: []
     };
@@ -116,23 +115,52 @@ export default {
   },
   watch: {
     selectedFilters: function () {
-      this.results = []
+      this.results = [];
     },
     filterSelection: function () {
       if (!this.filterSelection) return;
       if (this.categorySelection === "Character") {
-        if (this.filterSelection === "all" || this.filterSelection === "element") {
-          API.allCharacters(this.subFilterSelection)
+        if (this.filterSelection === "all") {
+          API.allCharacters()
             .then(res => {
-              this.results = res.data
+              this.results = res.data;
             })
-            .catch(err => console.log(err))
-        } else {
-          API.oneCharacter(this.subFilterSelection)
+            .catch(err => console.log(err));
+        } else if (this.filterSelection === "element") {
+          API.allElements()
             .then(res => {
-                console.log(res.data);
+              this.results = res.data;
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
+        }
+      } else if (this.categorySelection === "Quote") {
+        switch(this.filterSelection) {
+          case "all":
+              this.results = API.quotes();
+            break;
+          case "charid":
+            API.allCharacters()
+              .then(res => {
+                this.results = res.data;
+              })
+              .catch(err => console.log(err));
+            break;
+          case "episodeid":
+            API.allEpisodes()
+              .then(res => {
+                this.results = res.data;
+              })
+              .catch(err => console.log(err));
+            break;
+          case "seasonid":
+            API.allSeasons()
+              .then(res => {
+                this.results = res.data;
+              })
+              .catch(err => console.log(err));
+            break;
+          default:
+            return;
         }
       }
     }
