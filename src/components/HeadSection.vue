@@ -15,8 +15,8 @@ export default {
 
 <style scoped>
     header {
-        margin: 2.5vh auto;
-        width: 85%;
+        margin: 2.5vh 2.5%;
+        width: 95%;
         border: 0.1vw solid pink;
         height: 7.5vh;
         line-height: 7.5vh;
