@@ -16,12 +16,12 @@
         <FilterSection v-bind="{filters: filters, action: categoryFilter}" section="option" />
       </div>
       <div v-if="selectedFilters.length" class="col-4">
-        <OptionHeader option="Filter" />
-        <FilterSection v-bind="{filters: selectedFilters, action: selectFilter}" section="filter" />
+        <OptionHeader option="Sort By" />
+        <FilterSection v-bind="{filters: selectedFilters, action: sortByFilter}" section="filter" />
       </div>
-      <div v-if="results.length" class="col-4">
-        <OptionHeader option="Results" />
-        <FilterSection v-bind:filters="results" />
+      <div v-if="finalFilter.length" class="col-4">
+        <OptionHeader option="Filter" />
+        <FilterSection v-bind="{filters: finalFilter, action: getResults}" />
       </div>
     </div>
     <HeadSection name="Get API Key" />
@@ -94,8 +94,10 @@ export default {
         }
       ],
       categorySelection: "",
-      filterSelection: "",
+      sortBySelection: "",
+      finalSelection: null,
       selectedFilters: [],
+      finalFilter: [],
       results: []
     };
   },
@@ -107,61 +109,130 @@ export default {
           this.selectedFilters = this.filters[i].filter;
         }
       }
-      this.filterSelection = ""
+      this.sortBySelection = "";
+      this.finalSelection = null;
     },
-    selectFilter(filter) {
-      this.filterSelection = filter;
+    sortByFilter(filter) {
+      this.sortBySelection = filter;
+      this.finalSelection = null;
+    },
+    getResults(id) {
+      this.finalSelection = id;
+      if (this.categorySelection === "Quote" && this.sortBySelection === "all"){
+        this.finalSelection = 1;
+      }
     }
   },
   watch: {
-    selectedFilters: function () {
+    selectedFilters() {
+      this.finalFilter = [];
       this.results = [];
     },
-    filterSelection: function () {
-      if (!this.filterSelection) return;
+    sortBySelection() {
+      if (!this.sortBySelection) return;
+      this.results = [];
       if (this.categorySelection === "Character") {
-        if (this.filterSelection === "all") {
+        if (this.sortBySelection === "all") {
           API.allCharacters()
             .then(res => {
-              this.results = res.data;
+              this.finalFilter = res.data;
             })
             .catch(err => console.log(err));
-        } else if (this.filterSelection === "element") {
+        } else if (this.sortBySelection === "element") {
           API.allElements()
             .then(res => {
-              this.results = res.data;
+              this.finalFilter = res.data;
             })
             .catch(err => console.log(err));
         }
       } else if (this.categorySelection === "Quote") {
-        switch(this.filterSelection) {
+        switch(this.sortBySelection) {
           case "all":
-              this.results = API.quotes();
+              this.finalFilter = [{title: "random"}];
             break;
           case "charid":
             API.allCharacters()
               .then(res => {
-                this.results = res.data;
+                this.finalFilter = res.data;
               })
               .catch(err => console.log(err));
             break;
           case "episodeid":
             API.allEpisodes()
               .then(res => {
-                this.results = res.data;
+                this.finalFilter = res.data;
               })
               .catch(err => console.log(err));
             break;
           case "seasonid":
             API.allSeasons()
               .then(res => {
-                this.results = res.data;
+                this.finalFilter = res.data;
               })
               .catch(err => console.log(err));
             break;
           default:
             return;
         }
+      } else if (this.categorySelection === "Element") {
+        API.allElements()
+          .then(res => {
+            this.finalFilter = res.data;
+            this.results = res.data;
+          })
+          .catch(err => console.log(err));
+      } else if (this.categorySelection === "Episode") {
+        API.allEpisodes()
+          .then(res => {
+            this.finalFilter = res.data;
+          })
+          .catch(err => console.log(err));
+      } else if (this.categorySelection === "Season") {
+        API.allSeasons()
+          .then(res => {
+            this.finalFilter = res.data;
+          })
+          .catch(err => console.log(err));
+      }
+    },
+    finalSelection() {
+      if (!this.finalSelection || !this.sortBySelection || !this.categorySelection) return;
+      const id = this.finalSelection;
+      switch (this.categorySelection) {
+        case "Character":
+          if (this.sortBySelection === "all") {
+            API.oneCharacter(id)
+              .then(res => {
+                this.results = [res.data];
+              })
+              .catch(err => console.log(err));
+          } else {
+            API.allCharacters(id)
+              .then(res => {
+                this.results = res.data;
+              })
+              .catch(err => console.log(err));
+          }
+          break;
+        case "Quote":
+          this.results = API.quotes();
+          break;
+        case "Episode":
+          API.oneEpisode(id)
+            .then(res => {
+              this.results = [res.data];
+            })
+            .catch(err => console.log(err));
+          break;
+        case "Season":
+          API.oneSeason(id)
+            .then(res => {
+              this.results = [res.data];
+            })
+            .catch(err => console.log(err));
+          break;
+        default:
+          return;
       }
     }
   }

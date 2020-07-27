@@ -7,7 +7,9 @@
             <p v-on:click="selectFilter(text)">{{text}}</p>
         </div>
         <div v-else>
-            <p>{{text.body || text.ele_type ||text.title || text.char_name}}</p>
+            <p v-on:click="selectFilter(text.id || text.season_num)">
+                {{text.ele_type ||text.title || text.char_name}}
+            </p>
         </div>
     </div>
 </template>
@@ -16,7 +18,7 @@
 export default {
     name: "FilterItem",
     props: {
-        text: Object,
+        text: Object || String,
         section: String,
         action: Function,
         subFilters: Array
