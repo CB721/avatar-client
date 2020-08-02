@@ -59,5 +59,11 @@ export default {
         ]
         // return demo response to avoid exposing an api key
         return [dummyData[Math.floor(Math.random() * dummyData.length)]];
+    },
+    signUp: (data) => {
+        return axios.post(`${url}users/create`, data);
+    },
+    docs: () => {
+        return axios.get(`${url}docs/all`);
     }
 }

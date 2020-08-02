@@ -4,9 +4,10 @@
       <h1>{{ title }}</h1>
     </div>
     <ul class="links">
-      <li v-on:click="scrollToSection('detail-section')">Details</li>
+      <li v-on:click="scrollToSection('about-section')">About</li>
+      <li v-on:click="scrollToSection('docs-section')">Docs</li>
       <li v-on:click="scrollToSection('example-section')">Examples</li>
-      <li v-on:click="scrollToSection('key-section')">API Key</li>
+      <li v-on:click="scrollToSection('key-section')">Get API Key</li>
     </ul>
   </nav>
 </template>

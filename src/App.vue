@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <Navbar title="Avatar: The API" />
-    <HeadSection name="Details" />
+    <HeadSection name="About" />
     <div class="row">
       <div class="col-12">
-        <section id="detail-section">
+        <section id="about-section">
           <p>
             Aenean vel leo fermentum, aliquam est eu, faucibus quam. Aliquam erat volutpat. Aenean consectetur risus scelerisque, cursus ante quis, finibus lacus. Sed aliquet scelerisque nisi, a ornare metus cursus et. Sed non metus laoreet, iaculis orci quis, vestibulum metus. Nunc fermentum hendrerit magna, non venenatis lectus maximus vitae. Fusce nisi quam, sollicitudin nec dapibus in, pretium vitae lorem. Ut vitae turpis et massa rutrum tristique. Duis gravida pulvinar ipsum, ut rutrum tellus luctus vitae. Curabitur tortor mi, fermentum in lacus vitae, fermentum lobortis leo. Cras vitae volutpat tortor. Maecenas dignissim dolor non nisl aliquet volutpat sed et quam.
           </p>
@@ -12,23 +12,21 @@
           <p>
             Aenean odio quam, hendrerit at odio et, ultricies auctor lacus. Aliquam erat volutpat. Proin nec viverra metus, sed cursus magna. Pellentesque lorem elit, maximus commodo lectus in, elementum malesuada magna. Praesent nec sollicitudin sem. Integer vehicula turpis ut lacus faucibus condimentum. Pellentesque ornare nisl sed nibh ullamcorper porttitor. Pellentesque rutrum consequat tellus at sollicitudin. Pellentesque maximus tristique urna, et pellentesque enim pellentesque in. Praesent efficitur risus et tellus molestie mollis.
           </p>
-          <br>
-          <p>
-            Fusce dictum velit massa. Nulla facilisi. Cras augue massa, bibendum a gravida a, egestas in leo. Morbi ultricies facilisis neque et imperdiet. Mauris scelerisque ipsum et augue consequat, in dapibus velit accumsan. Vestibulum augue neque, vulputate vel lorem id, cursus ultricies nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce sed semper orci.
-          </p>
-          <br>
-          <p>
-            Donec fermentum molestie nisl non vestibulum. Cras tempus tincidunt odio, nec finibus dui consectetur ac. Fusce eget purus neque. Integer luctus felis non nisl ultrices semper sagittis a quam. Mauris rutrum tempor lectus, molestie molestie nisl varius in. Etiam eleifend odio quis est maximus, eget vestibulum orci vestibulum. Etiam eu leo maximus, suscipit nibh id, condimentum metus. Aliquam erat volutpat. Sed quis justo mi. Vestibulum in magna diam. Integer volutpat aliquet dolor sit amet euismod. Nulla egestas maximus nibh eu cursus. Vivamus est nisl, tempor sit amet rutrum sed, vestibulum sit amet purus. Curabitur et porttitor magna. Aenean mattis sodales venenatis.
-          </p>
-          <br>
-          <p>
-            Curabitur ut velit et tellus viverra interdum. Etiam rutrum justo sit amet nisl tristique dapibus. Donec congue nisi ac nisi tincidunt, eget varius lacus efficitur. Sed interdum sagittis tincidunt. In hac habitasse platea dictumst. Aenean interdum neque ante, eget vulputate leo venenatis in. Suspendisse egestas lectus diam, a posuere felis luctus non. Phasellus pellentesque sed est a lacinia. Maecenas a sapien sapien. Nam lacinia suscipit mauris, sit amet rhoncus nisl commodo nec.
-          </p>
-          <br>
-          <p>
-            Mauris at elit efficitur quam pulvinar hendrerit sit amet at lacus. Curabitur ac tortor suscipit lectus dignissim fermentum. Suspendisse accumsan ex ex, ac egestas diam pulvinar ac. Pellentesque sagittis diam justo, sed pretium sapien venenatis at. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at ultricies metus. Proin nec blandit urna. In mattis nec nulla in vestibulum. Fusce ut efficitur purus.
-          </p>
         </section>
+      </div>
+    </div>
+    <HeadSection name="Docs" />
+    <div class="row">
+      <div class="col-12">
+        <div id="docs-section" />
+        <div v-if="docs.length">
+          <div 
+            v-for="(doc, index) in docs"
+            v-bind:key="index"
+          >
+            <DocSection v-bind="{content: doc}" />
+          </div>
+        </div>
       </div>
     </div>
     <HeadSection name="Examples" />
@@ -64,7 +62,19 @@
             v-model="email"
             placeholder="Your email address"
             autocomplete="email"
-            id="email-input"
+            class="form-input"
+          />
+          <input
+            v-model="email"
+            placeholder="Your first name"
+            autocomplete="given-name"
+            class="form-input"
+          />
+          <input
+            v-model="email"
+            placeholder="Your last name"
+            autocomplete="family-name"
+            class="form-input"
           />
         </form>
       </div>
@@ -86,6 +96,7 @@ import HeadSection from "./components/HeadSection";
 import OptionHeader from "./components/OptionHeader";
 import FilterSection from "./components/FilterSection";
 import Results from "./components/Results";
+import DocSection from "./components/DocSection";
 import API from "./utils/api";
 import { create } from "./utils/query";
 
@@ -96,7 +107,13 @@ export default {
     HeadSection,
     OptionHeader,
     FilterSection,
-    Results
+    Results,
+    DocSection
+  },
+  created() {
+    API.docs()
+      .then(res => this.docs = res.data)
+      .catch(err => console.log(err));
   },
   data() {
     return {
@@ -134,7 +151,8 @@ export default {
       finalFilter: [],
       results: [],
       query: {},
-      explanation: ""
+      explanation: "",
+      docs: []
     };
   },
   methods: {
@@ -316,7 +334,7 @@ export default {
 .col-12 {
   width: 92%;
 }
-#email-input, #api-key {
+.form-input, #api-key {
   height: 5vh;
   line-height: 5vh;
   width: 95%;
