@@ -66,16 +66,18 @@ header {
   text-align: center;
   height: 1rem;
   line-height: 2rem;
-  margin-bottom: 5vh;
+  margin-bottom: 7.5vh;
 }
 .route-name,
 .request-type {
   width: 100%;
+  margin-top: 2.5vh;
 }
 .sub-routes {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 2.5vh;
 }
 .sub-route {
   width: 40%;

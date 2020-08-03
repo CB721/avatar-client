@@ -6,11 +6,11 @@
       <div class="col-12">
         <section id="about-section">
           <p>
-            Aenean vel leo fermentum, aliquam est eu, faucibus quam. Aliquam erat volutpat. Aenean consectetur risus scelerisque, cursus ante quis, finibus lacus. Sed aliquet scelerisque nisi, a ornare metus cursus et. Sed non metus laoreet, iaculis orci quis, vestibulum metus. Nunc fermentum hendrerit magna, non venenatis lectus maximus vitae. Fusce nisi quam, sollicitudin nec dapibus in, pretium vitae lorem. Ut vitae turpis et massa rutrum tristique. Duis gravida pulvinar ipsum, ut rutrum tellus luctus vitae. Curabitur tortor mi, fermentum in lacus vitae, fermentum lobortis leo. Cras vitae volutpat tortor. Maecenas dignissim dolor non nisl aliquet volutpat sed et quam.
+            A collection of information from the TV show: <a href="https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender" target="_blank">Avatar: The Last Airbender</a>.  Get details on the main characters, episodes and seasons.  All available without signing up for an API key!
           </p>
           <br>
           <p>
-            Aenean odio quam, hendrerit at odio et, ultricies auctor lacus. Aliquam erat volutpat. Proin nec viverra metus, sed cursus magna. Pellentesque lorem elit, maximus commodo lectus in, elementum malesuada magna. Praesent nec sollicitudin sem. Integer vehicula turpis ut lacus faucibus condimentum. Pellentesque ornare nisl sed nibh ullamcorper porttitor. Pellentesque rutrum consequat tellus at sollicitudin. Pellentesque maximus tristique urna, et pellentesque enim pellentesque in. Praesent efficitur risus et tellus molestie mollis.
+            The main purpose of this API to generate a random quote from the show.  You can filter these quotes by character, episode or season.  In order get access to the quotes, an API key is required.  Request a new <a href="#key-section">API key</a> today!
           </p>
         </section>
       </div>
@@ -114,6 +114,7 @@ export default {
     API.docs()
       .then(res => this.docs = res.data)
       .catch(err => console.log(err));
+    document.title = "Avatar: The Last API";
   },
   data() {
     return {
