@@ -57,33 +57,48 @@
     <HeadSection name="Get API Key" />
     <div class="row">
       <div class="col-6">
-        <OptionHeader option="Enter your email" />
+        <OptionHeader option="Sign Up" />
         <div id="key-section" />
+        <div v-if="formError">
+          <h3 id="form-error">
+            <strong>{{formError}}</strong>
+          </h3>
+        </div>
         <form>
+          <label for="email">Enter your email</label>
           <input
-            v-model="email"
-            placeholder="Your email address"
+            v-model="user.email"
+            placeholder="toph@ateamavatar.com"
             autocomplete="email"
+            id="email"
             class="form-input"
+            ref="email"
           />
+          <label for="first-name">Enter your first name</label>
           <input
-            v-model="email"
-            placeholder="Your first name"
+            v-model="user.firstName"
+            placeholder="Toph"
             autocomplete="given-name"
+            id="first-name"
             class="form-input"
+            ref="firstName"
           />
+          <label for="last-name">Enter your last name</label>
           <input
-            v-model="email"
-            placeholder="Your last name"
+            v-model="user.lastName"
+            placeholder="Beifong"
             autocomplete="family-name"
+            id="last-name"
             class="form-input"
+            ref="lastName"
           />
         </form>
+        <button id="submit-form" v-on:click="submitForm">Sign Up</button>
       </div>
       <div class="col-6">
-        <OptionHeader option="Your API key" />
-        <div>
-          <p id="api-key">ahlksjdhflkjasd</p>
+        <div v-if="user.key">
+          <OptionHeader option="Your API key" />
+          <p id="api-key">{{user.key}}</p>
         </div>
       </div>
     </div>
@@ -99,6 +114,7 @@ import Results from "./components/Results";
 import DocSection from "./components/DocSection";
 import API from "./utils/api";
 import { create } from "./utils/query";
+import isEmail from "validator/lib/isEmail";
 
 export default {
   name: "App",
@@ -153,7 +169,14 @@ export default {
       results: [],
       query: {},
       explanation: "",
-      docs: []
+      docs: [],
+      user: {
+        email: "",
+        firstName: "",
+        lastName: "",
+        key: ""
+      },
+      formError: ""
     };
   },
   methods: {
@@ -178,6 +201,27 @@ export default {
         this.explanation = "An API key is required in the request body.";
       } else {
         this.explanation = "";
+      }
+    },
+    submitForm(event) {
+      event.preventDefault();
+      console.log("submit form");
+      if (!this.user.email) {
+        this.formError = "Email required";
+        this.$refs.email.focus();
+      } else if (!isEmail(this.user.email)) {
+        this.formError = "Invalid email";
+        this.$refs.email.focus();
+      } else if (!this.user.firstName) {
+        this.formError = "First name required";
+        this.$refs.firstName.focus();
+      } else if (!this.user.lastName) {
+        this.formError = "Last name required";
+        this.$refs.lastName.focus();
+      } else {
+        this.formError = "";
+        // make api call to create user
+        // display api key on the page
       }
     }
   },
@@ -306,12 +350,13 @@ export default {
 <style>
 @font-face {
   font-family: "Avatar";
-  src: url("./assets/avatar-fonts.ttf") format('truetype');
+  src: url("./assets/avatar-fonts.ttf") format("truetype");
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* color: white; */
 }
 * {
   margin: 0;
@@ -345,13 +390,27 @@ export default {
   width: 92%;
 }
 .form-input,
+#api-key,
+#submit-form {
+  margin: 2.5vh auto;
+  border: 1px solid pink;
+}
+.form-input,
 #api-key {
   height: 5vh;
   line-height: 5vh;
-  width: 95%;
   padding: 2.5%;
-  margin: 0 auto;
-  border: 1px solid pink;
+  width: 95%;
+}
+#submit-form {
+  width: 100%;
+  height: 10vh;
+  line-height: 10vh;
+}
+#form-error {
+  text-align: center;
+  margin: 2.5vh auto;
+  color: red;
 }
 #about-section {
   text-align: center;

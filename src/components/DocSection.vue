@@ -1,12 +1,12 @@
 <template>
   <section class="docs">
     <header>
-      <h3 class="route-name">Main Route: {{content.mainRoute}}</h3>
+      <h3 class="route-name"><u>Main Route: {{content.mainRoute}}</u></h3>
       <p class="request-type">Request Type: {{content.requestType}}</p>
     </header>
     <div class="sub-routes">
       <div v-if="content.subRoutes.all" class="sub-route">
-        <p class="route">Sub Route: {{content.subRoutes.all.route}}</p>
+        <p class="route"><strong>Sub Route: {{content.subRoutes.all.route}}</strong></p>
         <div v-if="content.subRoutes.all.description">
           <p class="desc">Description: {{content.subRoutes.all.description}}</p>
         </div>
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div v-if="content.subRoutes.one" class="sub-route">
-        <p class="route">Sub Route: {{content.subRoutes.one.route}}</p>
+        <p class="route"><strong>Sub Route: {{content.subRoutes.one.route}}</strong></p>
         <div v-if="content.subRoutes.one.description">
           <p class="desc">Description: {{content.subRoutes.one.description}}</p>
         </div>
@@ -111,7 +111,7 @@ header {
   text-align: center;
   height: 1rem;
   line-height: 2rem;
-  margin-bottom: 7.5vh;
+  margin-bottom: 10vh;
 }
 .route-name,
 .request-type {
@@ -136,6 +136,9 @@ header {
 .param-head {
   text-align: center;
 }
+.params-header {
+  margin: 2.5vh auto;
+}
 .param {
   width: 90%;
   padding: 5%;
@@ -147,7 +150,7 @@ header {
     width: 98%;
   }
   header {
-    margin-bottom: 10vh;
+    margin-bottom: 12.5vh;
   }
 }
 </style>
