@@ -11,10 +11,12 @@
           <p class="desc">Description: {{content.subRoutes.all.description}}</p>
         </div>
         <div v-if="content.subRoutes.all.example">
-          <p class="example">{{content.subRoutes.all.example}}</p>
+          <p class="example">Example: {{content.subRoutes.all.example}}</p>
         </div>
         <div v-if="content.subRoutes.all.body">
-          <p class="params-header">Body</p>
+          <p class="params-header">
+            <strong>Body</strong>
+          </p>
           <div
             v-for="(bodyDetails, bodyName) in content.subRoutes.all.body"
             v-bind:key="bodyName"
@@ -28,9 +30,52 @@
           </div>
         </div>
         <div v-if="content.subRoutes.all.params">
-          <p class="params-header">Parameters</p>
+          <p class="params-header">
+            <strong>Parameters</strong>
+          </p>
           <div
             v-for="(paramDetails, paramName) in content.subRoutes.all.params"
+            v-bind:key="paramName"
+            class="param"
+          >
+            <p class="param-head">
+              Param:
+              <em>{{ paramName }}</em>
+            </p>
+            <div v-for="(detail, name) in paramDetails" v-bind:key="name">{{name}}: {{detail}}</div>
+          </div>
+        </div>
+      </div>
+      <div v-if="content.subRoutes.one" class="sub-route">
+        <p class="route">Sub Route: {{content.subRoutes.one.route}}</p>
+        <div v-if="content.subRoutes.one.description">
+          <p class="desc">Description: {{content.subRoutes.one.description}}</p>
+        </div>
+        <div v-if="content.subRoutes.one.example">
+          <p class="example">{{content.subRoutes.one.example}}</p>
+        </div>
+        <div v-if="content.subRoutes.one.body">
+          <p class="params-header">
+            <strong>Body</strong>
+          </p>
+          <div
+            v-for="(bodyDetails, bodyName) in content.subRoutes.one.body"
+            v-bind:key="bodyName"
+            class="param"
+          >
+            <p class="param-head">
+              Key:
+              <em>{{ bodyName }}</em>
+            </p>
+            <div v-for="(detail, name) in bodyDetails" v-bind:key="name">{{name}}: {{detail}}</div>
+          </div>
+        </div>
+        <div v-if="content.subRoutes.one.params">
+          <p class="params-header">
+            <strong>Parameters</strong>
+          </p>
+          <div
+            v-for="(paramDetails, paramName) in content.subRoutes.one.params"
             v-bind:key="paramName"
             class="param"
           >
@@ -95,5 +140,14 @@ header {
   width: 90%;
   padding: 5%;
   border: 1px solid pink;
+}
+@media only screen and (max-width: 500px) {
+  .docs {
+    margin: 2.5vh 1%;
+    width: 98%;
+  }
+  header {
+    margin-bottom: 10vh;
+  }
 }
 </style>

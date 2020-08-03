@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Navbar title="Avatar: The API" />
+    <Navbar title="Avatar: The Last API" />
     <HeadSection name="About" />
     <div class="row">
       <div class="col-12">
@@ -15,7 +15,9 @@
           <br />
           <p>
             The main purpose of this API to generate a random quote from the show. You can filter these quotes by character, episode or season. In order get access to the quotes, an API key is required. Request a new
-            <a href="#key-section">API key</a> today!
+            <a
+              href="#key-section"
+            >API key</a> today!
           </p>
         </section>
       </div>
@@ -302,10 +304,10 @@ export default {
 </script>
 
 <style>
-/* @font-face {
+@font-face {
   font-family: "Avatar";
-  src:url("../")
-} */
+  src: url("./assets/avatar-fonts.ttf") format('truetype');
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -350,6 +352,9 @@ export default {
   padding: 2.5%;
   margin: 0 auto;
   border: 1px solid pink;
+}
+#about-section {
+  text-align: center;
 }
 @media only screen and (max-width: 768px) {
   .col-4 {

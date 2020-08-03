@@ -42,6 +42,7 @@ nav {
 }
 .title {
   justify-content: center;
+  font-family: Avatar, Avenir, Helvetica, Arial, sans-serif;
 }
 .links {
   justify-content: space-evenly;
