@@ -6,11 +6,16 @@
       <div class="col-12">
         <section id="about-section">
           <p>
-            A collection of information from the TV show: <a href="https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender" target="_blank">Avatar: The Last Airbender</a>.  Get details on the main characters, episodes and seasons.  All available without signing up for an API key!
+            A collection of information from the TV show:
+            <a
+              href="https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender"
+              target="_blank"
+            >Avatar: The Last Airbender</a>. Get details on the main characters, episodes and seasons. All available without signing up for an API key!
           </p>
-          <br>
+          <br />
           <p>
-            The main purpose of this API to generate a random quote from the show.  You can filter these quotes by character, episode or season.  In order get access to the quotes, an API key is required.  Request a new <a href="#key-section">API key</a> today!
+            The main purpose of this API to generate a random quote from the show. You can filter these quotes by character, episode or season. In order get access to the quotes, an API key is required. Request a new
+            <a href="#key-section">API key</a> today!
           </p>
         </section>
       </div>
@@ -20,10 +25,7 @@
       <div class="col-12">
         <div id="docs-section" />
         <div v-if="docs.length">
-          <div 
-            v-for="(doc, index) in docs"
-            v-bind:key="index"
-          >
+          <div v-for="(doc, index) in docs" v-bind:key="index">
             <DocSection v-bind="{content: doc}" />
           </div>
         </div>
@@ -47,9 +49,7 @@
     </div>
     <div v-if="results.length" class="row">
       <div class="col-12">
-        <Results
-          v-bind="{results: results, explanation: explanation, query: query}"
-        />
+        <Results v-bind="{results: results, explanation: explanation, query: query}" />
       </div>
     </div>
     <HeadSection name="Get API Key" />
@@ -81,9 +81,7 @@
       <div class="col-6">
         <OptionHeader option="Your API key" />
         <div>
-          <p id="api-key">
-            ahlksjdhflkjasd
-          </p>
+          <p id="api-key">ahlksjdhflkjasd</p>
         </div>
       </div>
     </div>
@@ -112,7 +110,7 @@ export default {
   },
   created() {
     API.docs()
-      .then(res => this.docs = res.data)
+      .then(res => (this.docs = res.data))
       .catch(err => console.log(err));
     document.title = "Avatar: The Last API";
   },
@@ -173,7 +171,7 @@ export default {
     },
     getResults(id) {
       this.finalSelection = id;
-      if (this.categorySelection === "Quotes"){
+      if (this.categorySelection === "Quotes") {
         this.finalSelection = 1;
         this.explanation = "An API key is required in the request body.";
       } else {
@@ -204,9 +202,9 @@ export default {
             .catch(err => console.log(err));
         }
       } else if (this.categorySelection === "Quotes") {
-        switch(this.sortBySelection) {
+        switch (this.sortBySelection) {
           case "all":
-              this.finalFilter = [{title: "random"}];
+            this.finalFilter = [{ title: "random" }];
             break;
           case "charid":
             API.allCharacters()
@@ -254,7 +252,12 @@ export default {
       }
     },
     finalSelection() {
-      if (!this.finalSelection || !this.sortBySelection || !this.categorySelection) return;
+      if (
+        !this.finalSelection ||
+        !this.sortBySelection ||
+        !this.categorySelection
+      )
+        return;
       const id = this.finalSelection;
       this.query = create(this.categorySelection, this.sortBySelection, id);
       switch (this.categorySelection) {
@@ -299,6 +302,10 @@ export default {
 </script>
 
 <style>
+/* @font-face {
+  font-family: "Avatar";
+  src:url("../")
+} */
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -335,12 +342,27 @@ export default {
 .col-12 {
   width: 92%;
 }
-.form-input, #api-key {
+.form-input,
+#api-key {
   height: 5vh;
   line-height: 5vh;
   width: 95%;
   padding: 2.5%;
   margin: 0 auto;
   border: 1px solid pink;
+}
+@media only screen and (max-width: 768px) {
+  .col-4 {
+    width: 50%;
+  }
+  .col-6,
+  .col-8 {
+    width: 92%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .col-4 {
+    width: 92%;
+  }
 }
 </style>
