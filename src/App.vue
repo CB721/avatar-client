@@ -76,21 +76,21 @@
           />
           <label for="first-name">Enter your first name</label>
           <input
-            v-model="user.firstName"
+            v-model="user.first_name"
             placeholder="Toph"
             autocomplete="given-name"
             id="first-name"
             class="form-input"
-            ref="firstName"
+            ref="first_name"
           />
           <label for="last-name">Enter your last name</label>
           <input
-            v-model="user.lastName"
+            v-model="user.last_name"
             placeholder="Beifong"
             autocomplete="family-name"
             id="last-name"
             class="form-input"
-            ref="lastName"
+            ref="last_name"
           />
         </form>
         <button id="submit-form" v-on:click="submitForm">Sign Up</button>
@@ -172,8 +172,8 @@ export default {
       docs: [],
       user: {
         email: "",
-        firstName: "",
-        lastName: "",
+        first_name: "",
+        last_name: "",
         key: ""
       },
       formError: ""
@@ -205,23 +205,33 @@ export default {
     },
     submitForm(event) {
       event.preventDefault();
-      console.log("submit form");
       if (!this.user.email) {
         this.formError = "Email required";
         this.$refs.email.focus();
       } else if (!isEmail(this.user.email)) {
         this.formError = "Invalid email";
         this.$refs.email.focus();
-      } else if (!this.user.firstName) {
+      } else if (!this.user.first_name) {
         this.formError = "First name required";
-        this.$refs.firstName.focus();
-      } else if (!this.user.lastName) {
+        this.$refs.first_name.focus();
+      } else if (!this.user.last_name) {
         this.formError = "Last name required";
-        this.$refs.lastName.focus();
+        this.$refs.last_name.focus();
       } else {
         this.formError = "";
-        // make api call to create user
-        // display api key on the page
+        API.createUser(this.user)
+          .then(({ data }) => {
+            this.user.key = data.api_key;
+          })
+          .catch(err => {
+            console.error(err);
+            if (err.response.status == "409") {
+              this.formError = "Email already exists";
+              this.$refs.email.focus();
+            } else {
+              this.formError = "Server error.  Please try again";
+            }
+          });
       }
     }
   },
@@ -411,6 +421,9 @@ export default {
   text-align: center;
   margin: 2.5vh auto;
   color: red;
+}
+#api-key {
+  text-align: center;
 }
 #about-section {
   text-align: center;

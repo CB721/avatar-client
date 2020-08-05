@@ -67,6 +67,7 @@
               Key:
               <em>{{ bodyName }}</em>
             </p>
+            
             <div v-for="(detail, name) in bodyDetails" v-bind:key="name">{{name}}: {{detail}}</div>
           </div>
         </div>
@@ -131,6 +132,7 @@ header {
 }
 .route {
   width: 100%;
+  text-align: center;
 }
 .params-header,
 .param-head {
@@ -138,6 +140,9 @@ header {
 }
 .params-header {
   margin: 2.5vh auto;
+}
+.param-head {
+  margin-bottom: 2.5vh;
 }
 .param {
   width: 90%;

@@ -65,5 +65,8 @@ export default {
     },
     docs: () => {
         return axios.get(`${url}docs/all`);
+    },
+    createUser: (data) => {
+        return axios.post(`${url}users/create`, data);
     }
 }
