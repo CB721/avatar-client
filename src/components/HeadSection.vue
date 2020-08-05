@@ -21,5 +21,6 @@ export default {
         height: 7.5vh;
         line-height: 7.5vh;
         text-align: center;
+        text-transform: capitalize;
     }
 </style>

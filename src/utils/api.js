@@ -68,5 +68,12 @@ export default {
     },
     createUser: (data) => {
         return axios.post(`${url}users/create`, data);
+    },
+    updateUser: (data) => {
+        return axios.patch(`${url}users/create`, data);
+    },
+    deleteUser: (data) => {
+        console.log(data);
+        return axios.post(`${url}users/remove`, data);
     }
 }

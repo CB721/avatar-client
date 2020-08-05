@@ -68,11 +68,12 @@
           <label for="email">Enter your email</label>
           <input
             v-model="user.email"
-            placeholder="toph@ateamavatar.com"
+            placeholder="toph@teamavatar.com"
             autocomplete="email"
             id="email"
             class="form-input"
             ref="email"
+            type="email"
           />
           <label for="first-name">Enter your first name</label>
           <input
@@ -82,6 +83,7 @@
             id="first-name"
             class="form-input"
             ref="first_name"
+            type="text"
           />
           <label for="last-name">Enter your last name</label>
           <input
@@ -91,14 +93,94 @@
             id="last-name"
             class="form-input"
             ref="last_name"
+            type="text"
           />
         </form>
-        <button id="submit-form" v-on:click="submitForm">Sign Up</button>
+        <button id="submit-form" v-on:click="signUp">Sign Up</button>
       </div>
       <div class="col-6">
         <div v-if="user.key">
           <OptionHeader option="Your API key" />
           <p id="api-key">{{user.key}}</p>
+        </div>
+      </div>
+    </div>
+    <HeadSection name="Request a new API Key" />
+    <div class="row">
+      <div class="col-6">
+        <OptionHeader option="Your details" />
+        <div id="key-section" />
+        <div v-if="formError">
+          <h3 id="form-error">
+            <strong>{{formError}}</strong>
+          </h3>
+        </div>
+        <form>
+          <label for="email">Enter your email</label>
+          <input
+            v-model="user.email"
+            placeholder="toph@teamavatar.com"
+            autocomplete="email"
+            id="email"
+            class="form-input"
+            ref="email"
+            type="email"
+          />
+          <label for="key">Enter your current API key</label>
+          <input
+            v-model="user.key"
+            placeholder="abcdefghijklmnopqrstuvwxyandz"
+            id="key"
+            class="form-input"
+            ref="key"
+            type="text"
+          />
+        </form>
+        <button id="submit-form" v-on:click="updateDeleteKey($event, true)">Get a New Key</button>
+      </div>
+      <div class="col-6">
+        <div v-if="user.key">
+          <OptionHeader option="Your API key" />
+          <p id="api-key">{{user.key}}</p>
+        </div>
+      </div>
+    </div>
+    <HeadSection name="Delete an existing API Key" />
+    <div class="row">
+      <div class="col-6">
+        <OptionHeader option="Your details" />
+        <div id="key-section" />
+        <div v-if="formError">
+          <h3 id="form-error">
+            <strong>{{formError}}</strong>
+          </h3>
+        </div>
+        <form>
+          <label for="email">Enter your email</label>
+          <input
+            v-model="user.email"
+            placeholder="toph@teamavatar.com"
+            autocomplete="email"
+            id="email"
+            class="form-input"
+            ref="email"
+            type="email"
+          />
+          <label for="key">Enter your current API key</label>
+          <input
+            v-model="user.key"
+            placeholder="abcdefghijklmnopqrstuvwxyandz"
+            id="key"
+            class="form-input"
+            ref="key"
+            type="text"
+          />
+        </form>
+        <button id="submit-form" v-on:click="updateDeleteKey($event, false)">Delete your key</button>
+      </div>
+      <div class="col-6">
+        <div v-if="user.isDeleted">
+          <OptionHeader option="Your API key has successfully been deleted..." />
         </div>
       </div>
     </div>
@@ -174,7 +256,8 @@ export default {
         email: "",
         first_name: "",
         last_name: "",
-        key: ""
+        key: "",
+        isDeleted: false
       },
       formError: ""
     };
@@ -203,7 +286,7 @@ export default {
         this.explanation = "";
       }
     },
-    submitForm(event) {
+    signUp(event) {
       event.preventDefault();
       if (!this.user.email) {
         this.formError = "Email required";
@@ -219,12 +302,14 @@ export default {
         this.$refs.last_name.focus();
       } else {
         this.formError = "";
+        this.user.deleted = false;
         API.createUser(this.user)
           .then(({ data }) => {
             this.user.key = data.api_key;
           })
           .catch(err => {
             console.error(err);
+            console.error(err.response);
             if (err.response.status == "409") {
               this.formError = "Email already exists";
               this.$refs.email.focus();
@@ -232,6 +317,66 @@ export default {
               this.formError = "Server error.  Please try again";
             }
           });
+      }
+    },
+    updateDeleteKey(event, isUpdate) {
+      event.preventDefault();
+      if (!this.user.email) {
+        this.formError = "Email required";
+        this.$refs.email.focus();
+      } else if (!isEmail(this.user.email)) {
+        this.formError = "Invalid email";
+        this.$refs.email.focus();
+      } else if (!this.user.key) {
+        this.formError = "API key required";
+        this.$refs.key.focus();
+      } else {
+        this.formError = "";
+        const updateObj = {
+          email: this.user.email,
+          key: this.user.key
+        };
+        if (isUpdate) {
+          this.user.deleted = false;
+          API.updateUser(updateObj)
+            .then(({ data }) => {
+              console.log(data);
+              this.user.key = data.api_key;
+            })
+            .catch(err => {
+              console.error(err);
+              console.error(err.response);
+              if (err.response.data === "Invalid API key") {
+                this.formError = "Invalid API key";
+                this.$refs.key.focus();
+              } else if (err.response.data === "Invalid email") {
+                this.formError = "Invalid email";
+                this.$refs.key.focus();
+              } else if (err.response.data === "User not found") {
+                this.formError = "User not found";
+              } else {
+                this.formError = "Server error.  Please try again";
+              }
+            });
+        } else {
+          API.deleteUser(updateObj)
+            .then(() => this.user.isDeleted = true)
+            .catch(err => {
+              console.error(err);
+              console.error(err.response);
+              if (err.response.data === "Invalid API key") {
+                this.formError = "Invalid API key";
+                this.$refs.key.focus();
+              } else if (err.response.data === "Invalid email") {
+                this.formError = "Invalid email";
+                this.$refs.key.focus();
+              } else if (err.response.data === "User not found") {
+                this.formError = "User not found";
+              } else {
+                this.formError = "Server error.  Please try again";
+              }
+            });
+        }
       }
     }
   },
