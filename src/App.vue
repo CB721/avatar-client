@@ -16,7 +16,7 @@
           <p>
             The main purpose of this API to generate a random quote from the show. You can filter these quotes by character, episode or season. In order get access to the quotes, an API key is required. Request a new
             <a
-              href="#key-section"
+              href="#get-key"
             >API key</a> today!
           </p>
         </section>
@@ -54,11 +54,11 @@
         <Results v-bind="{results: results, explanation: explanation, query: query}" />
       </div>
     </div>
+    <div id="get-key" />
     <HeadSection name="Get API Key" />
     <div class="row">
       <div class="col-6">
         <OptionHeader option="Sign Up" />
-        <div id="key-section" />
         <div v-if="formError">
           <h3 id="form-error">
             <strong>{{formError}}</strong>
@@ -96,20 +96,20 @@
             type="text"
           />
         </form>
-        <button id="submit-form" v-on:click="signUp">Sign Up</button>
+        <button class="submit-form" v-on:click="signUp">Sign Up</button>
       </div>
       <div class="col-6">
         <div v-if="user.key">
           <OptionHeader option="Your API key" />
-          <p id="api-key">{{user.key}}</p>
+          <p class="api-key">{{user.key}}</p>
         </div>
       </div>
     </div>
+    <div id="update-key" />
     <HeadSection name="Request a new API Key" />
     <div class="row">
       <div class="col-6">
         <OptionHeader option="Your details" />
-        <div id="key-section" />
         <div v-if="formError">
           <h3 id="form-error">
             <strong>{{formError}}</strong>
@@ -136,20 +136,20 @@
             type="text"
           />
         </form>
-        <button id="submit-form" v-on:click="updateDeleteKey($event, true)">Get a New Key</button>
+        <button class="submit-form" v-on:click="updateDeleteKey($event, true)">Get a New Key</button>
       </div>
       <div class="col-6">
         <div v-if="user.key">
           <OptionHeader option="Your API key" />
-          <p id="api-key">{{user.key}}</p>
+          <p class="api-key">{{user.key}}</p>
         </div>
       </div>
     </div>
+    <div id="delete-key" />
     <HeadSection name="Delete an existing API Key" />
     <div class="row">
       <div class="col-6">
         <OptionHeader option="Your details" />
-        <div id="key-section" />
         <div v-if="formError">
           <h3 id="form-error">
             <strong>{{formError}}</strong>
@@ -176,7 +176,7 @@
             type="text"
           />
         </form>
-        <button id="submit-form" v-on:click="updateDeleteKey($event, false)">Delete your key</button>
+        <button class="submit-form" v-on:click="updateDeleteKey($event, false)">Delete your key</button>
       </div>
       <div class="col-6">
         <div v-if="user.isDeleted">
@@ -360,7 +360,7 @@ export default {
             });
         } else {
           API.deleteUser(updateObj)
-            .then(() => this.user.isDeleted = true)
+            .then(() => (this.user.isDeleted = true))
             .catch(err => {
               console.error(err);
               console.error(err.response);
@@ -545,29 +545,29 @@ export default {
   width: 92%;
 }
 .form-input,
-#api-key,
-#submit-form {
+.api-key,
+.submit-form {
   margin: 2.5vh auto;
   border: 1px solid pink;
 }
 .form-input,
-#api-key {
+.api-key {
   height: 5vh;
   line-height: 5vh;
   padding: 2.5%;
   width: 95%;
 }
-#submit-form {
+.submit-form {
   width: 100%;
   height: 10vh;
   line-height: 10vh;
 }
-#form-error {
+.form-error {
   text-align: center;
   margin: 2.5vh auto;
   color: red;
 }
-#api-key {
+.api-key {
   text-align: center;
 }
 #about-section {

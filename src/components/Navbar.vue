@@ -7,7 +7,26 @@
       <li v-on:click="scrollToSection('about-section')">About</li>
       <li v-on:click="scrollToSection('docs-section')">Docs</li>
       <li v-on:click="scrollToSection('example-section')">Examples</li>
-      <li v-on:click="scrollToSection('key-section')">Get API Key</li>
+      <div v-if="isExpanded">
+        <select id="nav-dropdown" v-model="selected">
+          <option disabled value="">Please select one</option>
+          <option
+            class="key-option"
+            value="get-key"
+          >Request API Key</option>
+          <option
+            class="key-option"
+            value="update-key"
+          >Update an existing key</option>
+          <option
+            class="key-option"
+            value="delete-key"
+          >Delete API Key</option>
+        </select>
+      </div>
+      <div v-else>
+        <li v-on:click="expandMenu">Key</li>
+      </div>
     </ul>
   </nav>
 </template>
@@ -18,10 +37,26 @@ export default {
   props: {
     title: String
   },
+  data() {
+    return {
+      isExpanded: false,
+      selected: ""
+    };
+  },
   methods: {
     scrollToSection(id) {
       const section = document.getElementById(id);
       section.scrollIntoView();
+    },
+    expandMenu(event) {
+      event.preventDefault();
+      this.isExpanded = !this.isExpanded;
+    }
+  },
+  watch: {
+    selected() {
+      this.scrollToSection(this.selected);
+      this.isExpanded = false;
     }
   }
 };
@@ -33,6 +68,10 @@ nav {
   min-height: 10vh;
   border: 0.2vw solid pink;
   display: block;
+}
+li:hover,
+.key-option {
+  cursor: pointer;
 }
 .title,
 .links {
