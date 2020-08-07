@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="section-bg">
     <h3>{{name}}</h3>
   </header>
 </template>
@@ -17,10 +17,10 @@ export default {
     header {
         margin: 2.5vh 2.5%;
         width: 95%;
-        border: 0.1vw solid pink;
         height: 7.5vh;
         line-height: 7.5vh;
         text-align: center;
         text-transform: capitalize;
+        border: 0.1vw solid pink;
     }
 </style>

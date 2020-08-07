@@ -64,9 +64,8 @@ export default {
 
 <style scoped>
 nav {
-  width: 99.6vw;
+  width: 100vw;
   min-height: 10vh;
-  border: 0.2vw solid pink;
   display: block;
 }
 li:hover,

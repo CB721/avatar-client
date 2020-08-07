@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <img
+      src="./assets/images/aang-arrow.svg"
+      alt="aang arrow"
+      id="aang-arrow"
+      v-rellax="{speed: 10}"
+    />
     <Navbar title="Avatar: The Last API" />
     <HeadSection name="About" />
     <div class="row">
@@ -507,18 +513,50 @@ export default {
   font-family: "Avatar";
   src: url("./assets/avatar-fonts.ttf") format("truetype");
 }
+body {
+  background: rgb(93, 100, 93);
+  background: linear-gradient(
+    180deg,
+    rgba(93, 100, 93, 1) 0%,
+    rgba(140, 147, 139, 1) 14%,
+    rgba(150, 157, 149, 1) 28%,
+    rgba(192, 187, 165, 1) 42%,
+    rgba(230, 211, 179, 1) 56%,
+    rgba(238, 234, 187, 1) 60%,
+    rgba(230, 218, 166, 1) 74%,
+    rgba(220, 171, 94, 1) 87%,
+    rgba(162, 108, 22, 1) 100%
+  );
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* color: white; */
+  color: white;
 }
 * {
   margin: 0;
   padding: 0;
 }
+#aang-arrow {
+  position: absolute;
+  z-index: -100;
+  height: 750%;
+  width: 100vw;
+}
+/* .section-bg {
+  border-radius: 0.25rem;
+  background: rgb(114, 57, 29);
+  background: linear-gradient(
+    180deg,
+    rgba(114, 57, 29, 1) 0%,
+    rgba(70, 27, 15, 1) 50%,
+    rgba(50, 14, 8, 1) 100%
+  );
+} */
 .row {
   width: 95%;
+
   margin: 0;
   padding: 2.5%;
   display: flex;
