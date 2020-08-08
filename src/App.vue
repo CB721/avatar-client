@@ -6,6 +6,48 @@
       id="aang-arrow"
       v-rellax="{speed: 10}"
     />
+    <img
+      src="./assets/images/mountain1.svg"
+      alt="mountain"
+      class="front-mountains"
+      id="right-mountain"
+      v-rellax="{speed: 3}"
+    />
+    <img
+      src="./assets/images/mountain1.svg"
+      alt="mountain"
+      class="front-mountains"
+      id="left-mountain"
+      v-rellax="{speed: 3}"
+    />
+    <img
+      src="./assets/images/mountain1.svg"
+      alt="mountain"
+      class="mid-mountains"
+      id="right-mid-mountain"
+      v-rellax="{speed: 5}"
+    />
+    <img
+      src="./assets/images/mountain1.svg"
+      alt="mountain"
+      class="mid-mountains"
+      id="left-mid-mountain"
+      v-rellax="{speed: 5}"
+    />
+    <img
+      src="./assets/images/mountain1.svg"
+      alt="mountain"
+      class="far-mountains"
+      id="right-far-mountain"
+      v-rellax="{speed: 7}"
+    />
+    <img
+      src="./assets/images/mountain1.svg"
+      alt="mountain"
+      class="far-mountains"
+      id="left-far-mountain"
+      v-rellax="{speed: 7}"
+    />
     <Navbar title="Avatar: The Last API" />
     <HeadSection name="About" />
     <div class="row">
@@ -543,6 +585,50 @@ body {
   z-index: -100;
   height: 750%;
   width: 100vw;
+  top: 0;
+  left: 0;
+}
+.front-mountains,
+.mid-mountains,
+.far-mountains {
+  height: 50vh;
+  max-width: 100vw;
+  position: absolute;
+}
+.front-mountains {
+  z-index: -101;
+}
+.mid-mountains {
+  z-index: -102;
+  filter: grayscale(25%);
+}
+.far-mountains {
+  z-index: -103;
+  filter: grayscale(50%);
+}
+#right-mountain {
+  top: 150%;
+  right: 5%;
+}
+#right-mid-mountain {
+  top: 145%;
+  right: 15%;
+}
+#right-far-mountain {
+  top: 140%;
+  right: 0%;
+}
+#left-mountain {
+  top: 150%;
+  left: 5%;
+}
+#left-mid-mountain {
+  top: 145%;
+  left: 15%;
+}
+#left-far-mountain {
+  top: 140%;
+  left: 0;
 }
 /* .section-bg {
   border-radius: 0.25rem;
