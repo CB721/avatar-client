@@ -1,53 +1,6 @@
 <template>
   <div id="app">
-    <img
-      src="./assets/images/aang-arrow.svg"
-      alt="aang arrow"
-      id="aang-arrow"
-      v-rellax="{speed: 10}"
-    />
-    <img
-      src="./assets/images/mountain1.svg"
-      alt="mountain"
-      class="front-mountains"
-      id="right-mountain"
-      v-rellax="{speed: 3}"
-    />
-    <img
-      src="./assets/images/mountain1.svg"
-      alt="mountain"
-      class="front-mountains"
-      id="left-mountain"
-      v-rellax="{speed: 3}"
-    />
-    <img
-      src="./assets/images/mountain1.svg"
-      alt="mountain"
-      class="mid-mountains"
-      id="right-mid-mountain"
-      v-rellax="{speed: 5}"
-    />
-    <img
-      src="./assets/images/mountain1.svg"
-      alt="mountain"
-      class="mid-mountains"
-      id="left-mid-mountain"
-      v-rellax="{speed: 5}"
-    />
-    <img
-      src="./assets/images/mountain1.svg"
-      alt="mountain"
-      class="far-mountains"
-      id="right-far-mountain"
-      v-rellax="{speed: 7}"
-    />
-    <img
-      src="./assets/images/mountain1.svg"
-      alt="mountain"
-      class="far-mountains"
-      id="left-far-mountain"
-      v-rellax="{speed: 7}"
-    />
+    <Background />
     <Navbar title="Avatar: The Last API" />
     <HeadSection name="About" />
     <div class="row">
@@ -242,6 +195,7 @@ import OptionHeader from "./components/OptionHeader";
 import FilterSection from "./components/FilterSection";
 import Results from "./components/Results";
 import DocSection from "./components/DocSection";
+import Background from "./components/Background";
 import API from "./utils/api";
 import { create } from "./utils/query";
 import isEmail from "validator/lib/isEmail";
@@ -254,7 +208,8 @@ export default {
     OptionHeader,
     FilterSection,
     Results,
-    DocSection
+    DocSection,
+    Background
   },
   created() {
     API.docs()
@@ -554,15 +509,16 @@ export default {
 @font-face {
   font-family: "Avatar";
   src: url("./assets/avatar-fonts.ttf") format("truetype");
+  font-display: swap;
 }
 body {
   background: rgb(93, 100, 93);
   background: linear-gradient(
     180deg,
-    rgba(93, 100, 93, 1) 0%,
-    rgba(140, 147, 139, 1) 14%,
-    rgba(150, 157, 149, 1) 28%,
-    rgba(192, 187, 165, 1) 42%,
+     rgba(0,0,0,1) 0%,
+    rgba(24,57,124,1) 10%,
+    rgb(128, 111, 180) 20%,
+    rgb(180, 158, 111) 30%,
     rgba(230, 211, 179, 1) 56%,
     rgba(238, 234, 187, 1) 60%,
     rgba(230, 218, 166, 1) 74%,
@@ -575,61 +531,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
+  overflow: hidden;
+  position:relative;
 }
 * {
   margin: 0;
   padding: 0;
 }
-#aang-arrow {
-  position: absolute;
-  z-index: -100;
-  height: 750%;
-  width: 100vw;
-  top: 0;
-  left: 0;
-}
-.front-mountains,
-.mid-mountains,
-.far-mountains {
-  height: 50vh;
-  max-width: 100vw;
-  position: absolute;
-}
-.front-mountains {
-  z-index: -101;
-}
-.mid-mountains {
-  z-index: -102;
-  filter: grayscale(25%);
-}
-.far-mountains {
-  z-index: -103;
-  filter: grayscale(50%);
-}
-#right-mountain {
-  top: 150%;
-  right: 5%;
-}
-#right-mid-mountain {
-  top: 145%;
-  right: 15%;
-}
-#right-far-mountain {
-  top: 140%;
-  right: 0%;
-}
-#left-mountain {
-  top: 150%;
-  left: 5%;
-}
-#left-mid-mountain {
-  top: 145%;
-  left: 15%;
-}
-#left-far-mountain {
-  top: 140%;
-  left: 0;
-}
+
 /* .section-bg {
   border-radius: 0.25rem;
   background: rgb(114, 57, 29);
