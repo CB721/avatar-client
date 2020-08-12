@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="bg-color border">
     <h5>{{option}}</h5>
   </header>
 </template>
@@ -17,7 +17,6 @@ export default {
     header {
         margin: 2.5vh auto;
         width: 100%;
-        border: 0.1vw solid pink;
         min-height: 5vh;
         line-height: 5vh;
         text-align: center;

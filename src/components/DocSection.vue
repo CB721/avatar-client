@@ -1,11 +1,11 @@
 <template>
   <section class="docs">
-    <header>
+    <header class="bg-color border">
       <h3 class="route-name"><u>Main Route: {{content.mainRoute}}</u></h3>
       <p class="request-type">Request Type: {{content.requestType}}</p>
     </header>
     <div class="sub-routes">
-      <div v-if="content.subRoutes.all" class="sub-route">
+      <div v-if="content.subRoutes.all" class="sub-route bg-color border">
         <p class="route"><strong>Sub Route: {{content.subRoutes.all.route}}</strong></p>
         <div v-if="content.subRoutes.all.description">
           <p class="desc">Description: {{content.subRoutes.all.description}}</p>
@@ -20,7 +20,7 @@
           <div
             v-for="(bodyDetails, bodyName) in content.subRoutes.all.body"
             v-bind:key="bodyName"
-            class="param"
+            class="param bg-color-black border"
           >
             <p class="param-head">
               Key:
@@ -36,7 +36,7 @@
           <div
             v-for="(paramDetails, paramName) in content.subRoutes.all.params"
             v-bind:key="paramName"
-            class="param"
+            class="param bg-color-black border"
           >
             <p class="param-head">
               Param:
@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-      <div v-if="content.subRoutes.one" class="sub-route">
+      <div v-if="content.subRoutes.one" class="sub-route bg-color border">
         <p class="route"><strong>Sub Route: {{content.subRoutes.one.route}}</strong></p>
         <div v-if="content.subRoutes.one.description">
           <p class="desc">Description: {{content.subRoutes.one.description}}</p>
@@ -61,7 +61,7 @@
           <div
             v-for="(bodyDetails, bodyName) in content.subRoutes.one.body"
             v-bind:key="bodyName"
-            class="param"
+            class="param bg-color-black border"
           >
             <p class="param-head">
               Key:
@@ -78,7 +78,7 @@
           <div
             v-for="(paramDetails, paramName) in content.subRoutes.one.params"
             v-bind:key="paramName"
-            class="param"
+            class="param bg-color-black border"
           >
             <p class="param-head">
               Param:
@@ -105,12 +105,10 @@ export default {
 .docs {
   margin: 2.5vh 12.5%;
   width: 75%;
-  border: 0.1vw solid pink;
 }
 header {
   width: 100%;
   text-align: center;
-  height: 1rem;
   line-height: 2rem;
   margin-bottom: 10vh;
 }
@@ -128,7 +126,8 @@ header {
 .sub-route {
   width: 40%;
   padding: 0.5rem;
-  border: 1px solid pink;
+  background: rgb(230, 230, 230);
+  margin-bottom: 1rem;
 }
 .route {
   width: 100%;
@@ -147,7 +146,9 @@ header {
 .param {
   width: 90%;
   padding: 5%;
-  border: 1px solid pink;
+}
+.param:nth-child(2), .param:nth-child(3) {
+  margin: 1rem 0;
 }
 @media only screen and (max-width: 500px) {
   .docs {

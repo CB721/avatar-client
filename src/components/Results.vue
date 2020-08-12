@@ -1,15 +1,15 @@
 <template>
-  <section class="results">
+  <section class="results bg-color">
     <h3>Results</h3>
-    <div class="results-box">{{results}}</div>
+    <div class="results-box bg-color-black ">{{results}}</div>
     <h3>Endpoint URL</h3>
-    <div class="query-url">{{query.url}}</div>
+    <div class="query-url bg-color-black">{{query.url}}</div>
     <div v-if="explanation">
       <h3>Additional Information</h3>
-      <p class="explanation">{{explanation}}</p>
+      <p class="explanation bg-color-black ">{{explanation}}</p>
     </div>
     <h3>Method</h3>
-    <div class="query-method">{{query.method}}</div>
+    <div class="query-method bg-color-black ">{{query.method}}</div>
   </section>
 </template>
 
@@ -31,16 +31,15 @@ export default {
   text-align: center;
   display: block;
   margin: 0 auto;
+  padding: 1rem 0;
 }
 .explanation,
 .results-box,
 .query-url,
-.query-method,
-.explanation {
-  width: 100%;
+.query-method {
+  width: 80%;
   line-height: 1rem;
-  border: 1px solid pink;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   margin: 1vh auto;
 }
 .results-box {

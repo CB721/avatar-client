@@ -1,5 +1,5 @@
 <template>
-  <section class="filter">
+  <section class="filter bg-color border">
       <div v-for="(filter,index) in filters" v-bind:key="index">
           <FilterItem 
               v-bind="{text: filter, section: section, action: selectFilter}"
@@ -38,5 +38,6 @@ export default {
   min-height: 5vh;
   line-height: 5vh;
   text-align: center;
+  padding: 5% 0;
 }
 </style>

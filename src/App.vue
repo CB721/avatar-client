@@ -5,7 +5,7 @@
     <HeadSection name="About" />
     <div class="row">
       <div class="col-12">
-        <section id="about-section">
+        <section id="about-section" class="bg-color border">
           <p>
             A collection of information from the TV show:
             <a
@@ -72,7 +72,7 @@
             placeholder="toph@teamavatar.com"
             autocomplete="email"
             id="email"
-            class="form-input"
+            class="form-input border"
             ref="email"
             type="email"
           />
@@ -82,7 +82,7 @@
             placeholder="Toph"
             autocomplete="given-name"
             id="first-name"
-            class="form-input"
+            class="form-input border"
             ref="first_name"
             type="text"
           />
@@ -92,7 +92,7 @@
             placeholder="Beifong"
             autocomplete="family-name"
             id="last-name"
-            class="form-input"
+            class="form-input border"
             ref="last_name"
             type="text"
           />
@@ -123,7 +123,7 @@
             placeholder="toph@teamavatar.com"
             autocomplete="email"
             id="email"
-            class="form-input"
+            class="form-input border"
             ref="email"
             type="email"
           />
@@ -132,7 +132,7 @@
             v-model="user.key"
             placeholder="abcdefghijklmnopqrstuvwxyandz"
             id="key"
-            class="form-input"
+            class="form-input border"
             ref="key"
             type="text"
           />
@@ -163,7 +163,7 @@
             placeholder="toph@teamavatar.com"
             autocomplete="email"
             id="email"
-            class="form-input"
+            class="form-input border"
             ref="email"
             type="email"
           />
@@ -172,7 +172,7 @@
             v-model="user.key"
             placeholder="abcdefghijklmnopqrstuvwxyandz"
             id="key"
-            class="form-input"
+            class="form-input border"
             ref="key"
             type="text"
           />
@@ -515,8 +515,8 @@ body {
   background: rgb(93, 100, 93);
   background: linear-gradient(
     180deg,
-     rgba(0,0,0,1) 0%,
-    rgba(24,57,124,1) 10%,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(24, 57, 124, 1) 10%,
     rgb(128, 111, 180) 20%,
     rgb(180, 158, 111) 30%,
     rgba(230, 211, 179, 1) 56%,
@@ -532,26 +532,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: white;
   overflow: hidden;
-  position:relative;
+  position: relative;
 }
 * {
   margin: 0;
   padding: 0;
 }
-
-/* .section-bg {
+.bg-color {
+  background: rgb(230, 230, 230);
+  color: rgb(39, 38, 38);
+}
+.bg-color-black {
+  background: rgb(39, 38, 38);
+  color: rgb(230, 230, 230);
+}
+.border {
   border-radius: 0.25rem;
-  background: rgb(114, 57, 29);
-  background: linear-gradient(
-    180deg,
-    rgba(114, 57, 29, 1) 0%,
-    rgba(70, 27, 15, 1) 50%,
-    rgba(50, 14, 8, 1) 100%
-  );
-} */
+  border: none;
+}
 .row {
   width: 95%;
-
   margin: 0;
   padding: 2.5%;
   display: flex;
@@ -581,7 +581,6 @@ body {
 .api-key,
 .submit-form {
   margin: 2.5vh auto;
-  border: 1px solid pink;
 }
 .form-input,
 .api-key {
@@ -605,6 +604,8 @@ body {
 }
 #about-section {
   text-align: center;
+  line-height: 2rem;
+  padding: 1rem 0;
 }
 @media only screen and (max-width: 768px) {
   .col-4 {

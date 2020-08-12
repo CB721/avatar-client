@@ -4,7 +4,7 @@
       src="../assets/images/aang-arrow.svg"
       alt="aang arrow"
       id="aang-arrow"
-      v-rellax="{speed: 1}"
+      v-rellax="{speed: 7}"
     />
     <img
       src="../assets/images/cloud-layer1.svg"
@@ -18,7 +18,7 @@
       alt="cloud"
       class="clouds mid-clouds"
       id="cloud-mid-right"
-      v-rellax="{speed: -1}"
+      v-rellax="{speed: 1}"
     />
     <img
       src="../assets/images/mountain1.svg"
@@ -83,12 +83,12 @@ export default {
   overflow: hidden;
 }
 .clouds {
-  /* height: 20vh; */
   width: 100vw;
   position: absolute;
 }
 .front-clouds {
   z-index: -99;
+  filter: grayscale(25%);
   top: 2%;
   right: 0;
   left: 0;

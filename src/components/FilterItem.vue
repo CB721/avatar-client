@@ -1,5 +1,5 @@
 <template>
-    <div class="filter-item">
+    <div class="filter-item bg-color-black">
         <div v-if="section === 'option'">
             <p v-on:click="selectFilter(text.name)">{{text.name}}</p>
         </div>
@@ -37,8 +37,7 @@ export default {
 <style scoped>
     .filter-item {
         width: 80%;
-        margin: 0 auto;
+        margin: 1rem auto;
         padding: 5%;
-        border: 1px solid pink;
     }
 </style>
