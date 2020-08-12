@@ -7,53 +7,18 @@
       v-rellax="{speed: 1}"
     />
     <img
-      src="../assets/images/cloud1.svg"
+      src="../assets/images/cloud-layer1.svg"
       alt="cloud"
       class="clouds front-clouds"
       id="cloud-front-right"
-      v-rellax="{speed: -5}"
+      v-rellax="{speed: -3}"
     />
     <img
-      src="../assets/images/cloud1.svg"
-      alt="cloud"
-      class="clouds front-clouds"
-      id="cloud-front-left"
-      v-rellax="{speed: -6}"
-    />
-    <img
-      src="../assets/images/cloud1.svg"
-      alt="cloud"
-      class="clouds front-clouds"
-      id="cloud-front-center"
-      v-rellax="{speed: -4}"
-    />
-    <img
-      src="../assets/images/cloud1.svg"
-      alt="cloud"
-      class="clouds mid-clouds"
-      id="cloud-mid-left"
-      v-rellax="{speed: -4}"
-    />
-    <img
-      src="../assets/images/cloud1.svg"
+      src="../assets/images/cloud-layer2.svg"
       alt="cloud"
       class="clouds mid-clouds"
       id="cloud-mid-right"
-      v-rellax="{speed: -5}"
-    />
-    <img
-      src="../assets/images/cloud1.svg"
-      alt="cloud"
-      class="clouds far-clouds"
-      id="cloud-far-right"
-      v-rellax="{speed: -6}"
-    />
-    <img
-      src="../assets/images/cloud1.svg"
-      alt="cloud"
-      class="clouds far-clouds"
-      id="cloud-far-left"
-      v-rellax="{speed: -7}"
+      v-rellax="{speed: -1}"
     />
     <img
       src="../assets/images/mountain1.svg"
@@ -118,52 +83,22 @@ export default {
   overflow: hidden;
 }
 .clouds {
-  height: 66vh;
-  max-width: 50vw;
+  /* height: 20vh; */
+  width: 100vw;
   position: absolute;
 }
 .front-clouds {
   z-index: -99;
-  filter: grayscale(25%);
+  top: 2%;
+  right: 0;
+  left: 0;
 }
 .mid-clouds {
   z-index: -101;
   filter: grayscale(50%);
-}
-.far-clouds {
-  z-index: -101;
-  filter: grayscale(75%);
-}
-#cloud-front-right {
-  top: 4%;
-  right: 15%;
-}
-#cloud-front-left {
-  top: 1%;
-  left: 0;
-}
-#cloud-front-center {
-  top: 0;
-  left: 25%;
-  width: 50vw;
-}
-#cloud-mid-right {
   top: 5%;
   right: 0;
-}
-#cloud-mid-left {
-  top: 4%;
-  left: 15%;
-}
-#cloud-far-right {
-  top: 0;
-  right: 3%;
-  height: 60vh;
-}
-#cloud-far-left {
-  top: 5%;
-  left: 3%;
-  height: 60vh;
+  left: 0;
 }
 .front-mountains,
 .mid-mountains,
