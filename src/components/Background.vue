@@ -25,43 +25,50 @@
       alt="mountain"
       class="front-mountains"
       id="right-mountain"
-      v-rellax="{speed: 3}"
+      v-rellax="{speed: 2}"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="front-mountains"
       id="left-mountain"
-      v-rellax="{speed: 3}"
+      v-rellax="{speed: 2}"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="mid-mountains"
       id="right-mid-mountain"
-      v-rellax="{speed: 5}"
+      v-rellax="{speed: 4}"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="mid-mountains"
       id="left-mid-mountain"
-      v-rellax="{speed: 5}"
+      v-rellax="{speed: 4}"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="far-mountains"
       id="right-far-mountain"
-      v-rellax="{speed: 7}"
+      v-rellax="{speed: 6}"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="far-mountains"
       id="left-far-mountain"
-      v-rellax="{speed: 7}"
+      v-rellax="{speed: 6}"
     />
+    <img
+      src="../assets/images/mountain2.svg"
+      alt="mountain"
+      id="center-mountain"
+      v-rellax="{speed: 10}"
+    />
+    <img src="../assets/images/aang3.svg" alt="aang crouched" id="aang-intro" v-rellax="{speed: 7}" />
   </div>
 </template>
 
@@ -140,6 +147,20 @@ export default {
 }
 #left-far-mountain {
   top: 20%;
+  left: 0;
+}
+#center-mountain {
+  position: absolute;
+  z-index: -99;
+  top: 25%;
+  width: 100vw;
+  left: 0;
+}
+#aang-intro {
+  position: absolute;
+  z-index: -99;
+  top: 20%;
+  width: 100vw;
   left: 0;
 }
 </style>
