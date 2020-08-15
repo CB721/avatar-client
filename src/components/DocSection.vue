@@ -158,5 +158,14 @@ header {
   header {
     margin-bottom: 12.5vh;
   }
+  .sub-routes {
+    width: 90%;
+    display: inline-block;
+    /* padding: 2%; */
+    margin: 0 2.5%;
+  }
+  .sub-route {
+    width: 100%;
+  }
 }
 </style>

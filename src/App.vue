@@ -13,7 +13,6 @@
               target="_blank"
             >Avatar: The Last Airbender</a>. Get details on the main characters, episodes and seasons. All available without signing up for an API key!
           </p>
-          <br />
           <p>
             The main purpose of this API to generate a random quote from the show. You can filter these quotes by character, episode or season. In order get access to the quotes, an API key is required. Request a new
             <a
@@ -99,8 +98,8 @@
         </form>
         <button class="submit-form" v-on:click="signUp">Sign Up</button>
       </div>
-      <div class="col-6">
-        <div v-if="user.key">
+      <div v-if="user.key">
+        <div class="col-6">
           <OptionHeader option="Your API key" />
           <p class="api-key">{{user.key}}</p>
         </div>
@@ -139,8 +138,8 @@
         </form>
         <button class="submit-form" v-on:click="updateDeleteKey($event, true)">Get a New Key</button>
       </div>
-      <div class="col-6">
-        <div v-if="user.key">
+      <div v-if="user.key">
+        <div class="col-6">
           <OptionHeader option="Your API key" />
           <p class="api-key">{{user.key}}</p>
         </div>
@@ -179,8 +178,8 @@
         </form>
         <button class="submit-form" v-on:click="updateDeleteKey($event, false)">Delete your key</button>
       </div>
-      <div class="col-6">
-        <div v-if="user.isDeleted">
+      <div v-if="user.isDeleted">
+        <div class="col-6">
           <OptionHeader option="Your API key has successfully been deleted..." />
         </div>
       </div>
@@ -618,10 +617,13 @@ body {
   line-height: 2rem;
   padding: 1rem 0;
 }
-#about-section p{
+#about-section p {
   padding: 1rem;
 }
 @media only screen and (max-width: 768px) {
+  .row {
+    display: block;
+  }
   .col-4 {
     width: 50%;
   }
@@ -630,7 +632,7 @@ body {
     width: 92%;
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 500px) {
   .col-4 {
     width: 92%;
   }
