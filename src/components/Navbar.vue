@@ -9,19 +9,10 @@
       <li v-on:click="scrollToSection('example-section')">Examples</li>
       <div v-if="isExpanded">
         <select id="nav-dropdown" v-model="selected">
-          <option disabled value="">Please select one</option>
-          <option
-            class="key-option"
-            value="get-key"
-          >Request API Key</option>
-          <option
-            class="key-option"
-            value="update-key"
-          >Update an existing key</option>
-          <option
-            class="key-option"
-            value="delete-key"
-          >Delete API Key</option>
+          <option disabled value>Please select one</option>
+          <option class="key-option" value="get-key">Request API Key</option>
+          <option class="key-option" value="update-key">Update an existing key</option>
+          <option class="key-option" value="delete-key">Delete API Key</option>
         </select>
       </div>
       <div v-else>
@@ -46,7 +37,7 @@ export default {
   methods: {
     scrollToSection(id) {
       const section = document.getElementById(id);
-      section.scrollIntoView();
+      section.scrollIntoView({ behavior: "smooth" });
     },
     expandMenu(event) {
       event.preventDefault();

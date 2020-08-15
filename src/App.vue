@@ -516,14 +516,10 @@ body {
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 1) 0%,
-    rgba(24, 57, 124, 1) 10%,
-    rgb(128, 111, 180) 20%,
-    rgb(180, 158, 111) 30%,
-    rgba(230, 211, 179, 1) 56%,
-    rgba(238, 234, 187, 1) 60%,
-    rgba(230, 218, 166, 1) 74%,
-    rgba(220, 171, 94, 1) 87%,
-    rgba(162, 108, 22, 1) 100%
+    rgb(8, 38, 99) 25%,
+    rgb(29, 72, 160) 50%,
+    rgb(75, 29, 160) 75%,
+    rgb(128, 111, 180) 100%
   );
 }
 #app {
@@ -589,6 +585,21 @@ body {
   padding: 2.5%;
   width: 95%;
 }
+.form-input:focus,
+.submit-form:focus {
+  outline: none !important;
+  border: 3px solid rgb(0, 195, 255);
+  box-shadow: 0 0 0.5rem #dfe0e0;
+  transition: 0.2s;
+}
+.form-input:focus {
+  width: calc(95% - 3px);
+  height: calc(5vh - 3px);
+}
+.submit-form:focus {
+  width: calc(100% - 3px);
+  height: calc(10vh - 3px);
+}
 .submit-form {
   width: 100%;
   height: 10vh;
@@ -606,6 +617,9 @@ body {
   text-align: center;
   line-height: 2rem;
   padding: 1rem 0;
+}
+#about-section p{
+  padding: 1rem;
 }
 @media only screen and (max-width: 768px) {
   .col-4 {
