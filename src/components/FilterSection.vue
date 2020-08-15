@@ -1,5 +1,5 @@
 <template>
-  <section class="filter bg-color border">
+  <section class="filter bg-color border shadow">
       <div v-for="(filter,index) in filters" v-bind:key="index">
           <FilterItem 
               v-bind="{text: filter, section: section, action: selectFilter}"

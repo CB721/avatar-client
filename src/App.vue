@@ -71,7 +71,7 @@
             placeholder="toph@teamavatar.com"
             autocomplete="email"
             id="email"
-            class="form-input border"
+            class="form-input border shadow"
             ref="email"
             type="email"
           />
@@ -81,7 +81,7 @@
             placeholder="Toph"
             autocomplete="given-name"
             id="first-name"
-            class="form-input border"
+            class="form-input border shadow"
             ref="first_name"
             type="text"
           />
@@ -91,12 +91,12 @@
             placeholder="Beifong"
             autocomplete="family-name"
             id="last-name"
-            class="form-input border"
+            class="form-input border shadow"
             ref="last_name"
             type="text"
           />
         </form>
-        <button class="submit-form" v-on:click="signUp">Sign Up</button>
+        <button class="submit-form border shadow" v-on:click="signUp">Sign Up</button>
       </div>
       <div v-if="user.key">
         <div class="col-6">
@@ -122,7 +122,7 @@
             placeholder="toph@teamavatar.com"
             autocomplete="email"
             id="email"
-            class="form-input border"
+            class="form-input border shadow"
             ref="email"
             type="email"
           />
@@ -131,12 +131,12 @@
             v-model="user.key"
             placeholder="abcdefghijklmnopqrstuvwxyandz"
             id="key"
-            class="form-input border"
+            class="form-input border shadow"
             ref="key"
             type="text"
           />
         </form>
-        <button class="submit-form" v-on:click="updateDeleteKey($event, true)">Get a New Key</button>
+        <button class="submit-form border shadow" v-on:click="updateDeleteKey($event, true)">Get a New Key</button>
       </div>
       <div v-if="user.key">
         <div class="col-6">
@@ -162,7 +162,7 @@
             placeholder="toph@teamavatar.com"
             autocomplete="email"
             id="email"
-            class="form-input border"
+            class="form-input border shadow"
             ref="email"
             type="email"
           />
@@ -171,12 +171,15 @@
             v-model="user.key"
             placeholder="abcdefghijklmnopqrstuvwxyandz"
             id="key"
-            class="form-input border"
+            class="form-input border shadow"
             ref="key"
             type="text"
           />
         </form>
-        <button class="submit-form" v-on:click="updateDeleteKey($event, false)">Delete your key</button>
+        <button
+          class="submit-form border shadow"
+          v-on:click="updateDeleteKey($event, false)"
+        >Delete your key</button>
       </div>
       <div v-if="user.isDeleted">
         <div class="col-6">
@@ -514,12 +517,13 @@ body {
   background: rgb(93, 100, 93);
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 1) 0%,
+    rgb(15, 15, 15) 0%,
     rgb(8, 38, 99) 25%,
     rgb(29, 72, 160) 50%,
     rgb(75, 29, 160) 75%,
     rgb(128, 111, 180) 100%
   );
+  box-shadow: inset 0 0 100px black;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -544,6 +548,9 @@ body {
 .border {
   border-radius: 0.25rem;
   border: none;
+}
+.shadow {
+  box-shadow: 0 0 30px #76777785;
 }
 .row {
   width: 95%;
@@ -598,6 +605,10 @@ body {
 .submit-form:focus {
   width: calc(100% - 3px);
   height: calc(10vh - 3px);
+}
+.form-input, .submit-form {
+  background: rgb(230, 230, 230);
+  border: none;
 }
 .submit-form {
   width: 100%;

@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-color border">
+  <header class="bg-color border shadow">
     <h3>{{name}}</h3>
   </header>
 </template>
