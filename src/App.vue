@@ -5,7 +5,7 @@
     <HeadSection name="About" />
     <div class="row">
       <div class="col-12">
-        <section id="about-section" class="bg-color border">
+        <section id="about-section" class="bg-color border shadow">
           <p>
             A collection of information from the TV show:
             <a
@@ -523,15 +523,16 @@ body {
     rgb(75, 29, 160) 75%,
     rgb(128, 111, 180) 100%
   );
-  box-shadow: inset 0 0 100px black;
+  box-shadow: inset 0 0 60px rgb(39, 38, 38);
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
-  overflow: hidden;
   position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 * {
   margin: 0;
@@ -550,7 +551,8 @@ body {
   border: none;
 }
 .shadow {
-  box-shadow: 0 0 30px #76777785;
+  box-shadow: 0 100px 10px #22222244;
+  margin-bottom: 100px;
 }
 .row {
   width: 95%;
@@ -579,6 +581,10 @@ body {
 .col-12 {
   width: 92%;
 }
+form {
+  width: 100%;
+  margin: 0 auto;
+}
 .form-input,
 .api-key,
 .submit-form {
@@ -589,14 +595,14 @@ body {
   height: 5vh;
   line-height: 5vh;
   padding: 2.5%;
-  width: 95%;
+  width: calc(95% - 6px);
 }
 .form-input:focus,
 .submit-form:focus {
   outline: none !important;
   border: 3px solid rgb(0, 195, 255);
-  box-shadow: 0 0 0.5rem #dfe0e0;
-  transition: 0.2s;
+  box-shadow: 0 0 0.25rem #dfe0e0;
+  transition: 0.3s;
 }
 .form-input:focus {
   width: calc(95% - 3px);
@@ -608,7 +614,8 @@ body {
 }
 .form-input, .submit-form {
   background: rgb(230, 230, 230);
-  border: none;
+  color: rgb(39, 38, 38);
+  border: 3px solid transparent;
 }
 .submit-form {
   width: 100%;

@@ -4,7 +4,7 @@
       src="../assets/images/aang-arrow.svg"
       alt="aang arrow"
       id="aang-arrow"
-      v-rellax="{speed: 2}"
+      v-rellax="{speed: 3}"
     />
     <!-- <img
       src="../assets/images/cloud-layer1.svg"
@@ -68,7 +68,7 @@
       id="center-mountain"
       v-rellax="{speed: 10}"
     />
-    <img src="../assets/images/aang3.svg" alt="aang crouched" id="aang-intro" v-rellax="{speed: 7}" /> -->
+    <img src="../assets/images/aang3.svg" alt="aang crouched" id="aang-intro" v-rellax="{speed: 7}" />-->
   </div>
 </template>
 
@@ -82,12 +82,11 @@ export default {
 #aang-arrow {
   position: absolute;
   z-index: -100;
-  width: 75vw;
+  width: 85vw;
   top: -30%;
-  left: 12.5%;
+  left: 7.5%;
   bottom: 200;
   right: 0;
-  overflow: hidden;
 }
 .clouds {
   width: 100vw;
@@ -162,5 +161,10 @@ export default {
   top: 20%;
   width: 100vw;
   left: 0;
+}
+@media only screen and (max-width: 500px) {
+  #aang-arrow {
+    top: 10%;
+  }
 }
 </style>

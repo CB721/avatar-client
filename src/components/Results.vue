@@ -1,15 +1,15 @@
 <template>
-  <section class="results bg-color shadow">
+  <section class="results bg-color shadow border">
     <h3>Results</h3>
-    <div class="results-box bg-color-black ">{{results}}</div>
+    <div class="results-box bg-color-black border">{{results}}</div>
     <h3>Endpoint URL</h3>
-    <div class="query-url bg-color-black">{{query.url}}</div>
+    <div class="query-url bg-color-black border">{{query.url}}</div>
     <div v-if="explanation">
       <h3>Additional Information</h3>
-      <p class="explanation bg-color-black ">{{explanation}}</p>
+      <p class="explanation bg-color-black border">{{explanation}}</p>
     </div>
     <h3>Method</h3>
-    <div class="query-method bg-color-black ">{{query.method}}</div>
+    <div class="query-method bg-color-black border">{{query.method}}</div>
   </section>
 </template>
 
@@ -43,7 +43,7 @@ export default {
   margin: 1vh auto;
 }
 .results-box {
-  text-align: left;
+  text-align: center;
 }
 .results-box {
   min-height: 25vh;

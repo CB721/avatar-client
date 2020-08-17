@@ -17,8 +17,8 @@ export default {
     header {
         margin: 2.5vh auto;
         width: 100%;
-        min-height: 5vh;
-        line-height: 5vh;
+        min-height: 10vh;
+        line-height: 10vh;
         text-align: center;
         text-transform: capitalize;
     }

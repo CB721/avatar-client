@@ -1,6 +1,6 @@
 <template>
   <section class="docs">
-    <header class="bg-color border">
+    <header class="bg-color border shadow">
       <h3 class="route-name"><u>Main Route: {{content.mainRoute}}</u></h3>
       <p class="request-type">Request Type: {{content.requestType}}</p>
     </header>
