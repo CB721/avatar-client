@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Background />
-    <Navbar title="Avatar: The Last API" />
+    <Navbar v-bind="{title: title}"/>
     <HeadSection name="About" />
     <div class="row">
       <div class="col-12">
@@ -217,10 +217,14 @@ export default {
     API.docs()
       .then(res => (this.docs = res.data))
       .catch(err => console.log(err));
-    document.title = "Avatar: The Last API";
+    const randNum = Math.round(Math.random())
+    if (randNum) this.title = "Avatar: The Last API"
+    else this.title = "Avatar: The Legend of API"
+    document.title = this.title;
   },
   data() {
     return {
+      title: "",
       filters: [
         {
           name: "Characters",
