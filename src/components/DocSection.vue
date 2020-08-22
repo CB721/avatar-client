@@ -5,7 +5,7 @@
       <p class="request-type">Request Type: {{content.requestType}}</p>
     </header>
     <div class="sub-routes">
-      <div v-if="content.subRoutes.all" class="sub-route bg-color border">
+      <div v-if="content.subRoutes.all" class="sub-route bg-color border shadow">
         <p class="route"><strong>Sub Route: {{content.subRoutes.all.route}}</strong></p>
         <div v-if="content.subRoutes.all.description">
           <p class="desc">Description: {{content.subRoutes.all.description}}</p>
@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-      <div v-if="content.subRoutes.one" class="sub-route bg-color border">
+      <div v-if="content.subRoutes.one" class="sub-route bg-color border shadow">
         <p class="route"><strong>Sub Route: {{content.subRoutes.one.route}}</strong></p>
         <div v-if="content.subRoutes.one.description">
           <p class="desc">Description: {{content.subRoutes.one.description}}</p>
@@ -127,7 +127,7 @@ header {
   width: 40%;
   padding: 0.5rem;
   background: rgb(230, 230, 230);
-  margin-bottom: 1rem;
+  margin-bottom: 10vh;
 }
 .route {
   width: 100%;

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="bg-side" id="left-side" />
+    <div class="bg-side" id="right-side" />
+    <div id="bottom" />
     <img
       src="../assets/images/aang-arrow.svg"
       alt="aang arrow"
@@ -7,20 +10,6 @@
       v-rellax="{speed: 3}"
     />
     <!-- <img
-      src="../assets/images/cloud-layer1.svg"
-      alt="cloud"
-      class="clouds front-clouds"
-      id="cloud-front-right"
-      v-rellax="{speed: -3}"
-    />
-    <img
-      src="../assets/images/cloud-layer2.svg"
-      alt="cloud"
-      class="clouds mid-clouds"
-      id="cloud-mid-right"
-      v-rellax="{speed: 1}"
-    />
-    <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="front-mountains"
@@ -79,6 +68,45 @@ export default {
 </script>
 
 <style scoped>
+.bg-side {
+  position: fixed;
+  width: 50vw;
+  height: 100vh;
+  top: 0;
+  background: rgb(79, 79, 79);
+  z-index: -103;
+}
+#left-side {
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(79, 79, 79, 0.04945728291316531) 0%,
+    rgba(79, 79, 79, 0.26) 45%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+#right-side {
+  right: 0;
+  background: linear-gradient(
+    270deg,
+    rgba(79, 79, 79, 0.04945728291316531) 0%,
+    rgba(79, 79, 79, 0.26) 45%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+#bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -102;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
 #aang-arrow {
   position: absolute;
   z-index: -100;

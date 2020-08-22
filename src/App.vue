@@ -523,7 +523,7 @@ body {
     rgb(75, 29, 160) 75%,
     rgb(128, 111, 180) 100%
   );
-  box-shadow: inset 0 0 60px rgb(39, 38, 38);
+  box-shadow: inset 0 0 100px rgb(39, 38, 38);
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -551,7 +551,7 @@ body {
   border: none;
 }
 .shadow {
-  box-shadow: 0 100px 10px #22222244;
+  box-shadow: 0 100px 10px #22222232;
   margin-bottom: 100px;
 }
 .row {
