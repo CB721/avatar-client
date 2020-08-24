@@ -200,6 +200,7 @@
         <Credits />
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -212,6 +213,7 @@ import Results from "./components/Results";
 import DocSection from "./components/DocSection";
 import Background from "./components/Background";
 import Credits from "./components/Credits";
+import Footer from "./components/Footer";
 import API from "./utils/api";
 import { create } from "./utils/query";
 import isEmail from "validator/lib/isEmail";
@@ -226,7 +228,8 @@ export default {
     Results,
     DocSection,
     Background,
-    Credits
+    Credits,
+    Footer
   },
   created() {
     API.docs()

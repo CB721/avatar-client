@@ -1,16 +1,6 @@
 <template>
   <div id="credits">
     <section class="credit-section shadow">
-      <OptionHeader option="Quote Information Sources" />
-      <div class="sources bg-color border">
-        <ul>
-          <li>
-            <a href="https://avatar.fandom.com/wiki/Avatar_Wiki" target="_blank">Avatar Fandom</a>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section class="credit-section shadow">
       <OptionHeader option="Character Information Sources" />
       <div class="sources bg-color border">
         <ul>
@@ -40,6 +30,16 @@
               href="http://www.nick.co.uk/shows/legend-of-korra/65kecx"
               target="_blank"
             >Nickelodeon - The Legend of Korra</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="credit-section shadow">
+      <OptionHeader option="Quote Information Sources" />
+      <div class="sources bg-color border">
+        <ul>
+          <li>
+            <a href="https://avatar.fandom.com/wiki/Avatar_Wiki" target="_blank">Avatar Fandom</a>
           </li>
         </ul>
       </div>
@@ -96,6 +96,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 20vh;
 }
 .credit-section {
   width: 27%;

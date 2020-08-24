@@ -7,7 +7,7 @@
       src="../assets/images/aang-arrow.svg"
       alt="aang arrow"
       id="aang-arrow"
-      v-rellax="{speed: 3}"
+      v-rellax="{speed: 5}"
     />
     <img
       src="../assets/images/mountain1.svg"
@@ -149,27 +149,27 @@ export default {
 }
 #right-mountain {
   bottom: 0;
-  right: 0;
+  right: -10%;
 }
 #right-mid-mountain {
   bottom: 0;
-  right: -5%;
+  right: -15%;
 }
 #right-far-mountain {
   bottom: 0;
-  right: -15%;
+  right: -5%;
 }
 #left-mountain {
   bottom: 0;
-  left: 0;
+  left: -10%;
 }
 #left-mid-mountain {
   bottom: 0;
-  left: -5%;
+  left: -15%;
 }
 #left-far-mountain {
   bottom: 0;
-  left: -15%;
+  left: -5%;
 }
 #center-mountain {
   position: absolute;
