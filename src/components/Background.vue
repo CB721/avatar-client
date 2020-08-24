@@ -132,20 +132,18 @@ export default {
 .front-mountains,
 .mid-mountains,
 .far-mountains {
-  height: 50vh;
   max-width: 50vw;
   position: absolute;
 }
 .front-mountains {
   z-index: -90;
+  filter: grayscale(5%);
 }
 .mid-mountains {
-  height: 65vh;
   z-index: -102;
-  filter: grayscale(20%);
+  filter: grayscale(25%);
 }
 .far-mountains {
-  height: 75vh;
   z-index: -103;
   filter: grayscale(35%);
 }
@@ -155,11 +153,11 @@ export default {
 }
 #right-mid-mountain {
   bottom: 0;
-  right: 5%;
+  right: -5%;
 }
 #right-far-mountain {
   bottom: 0;
-  right: 0%;
+  right: -15%;
 }
 #left-mountain {
   bottom: 0;
@@ -167,11 +165,11 @@ export default {
 }
 #left-mid-mountain {
   bottom: 0;
-  left: 5%;
+  left: -5%;
 }
 #left-far-mountain {
   bottom: 0;
-  left: 0;
+  left: -15%;
 }
 #center-mountain {
   position: absolute;

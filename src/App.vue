@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Background v-bind="{avatar: title}"/>
+    <Background v-bind="{avatar: title}" />
     <Navbar v-bind="{title: title}" />
     <HeadSection name="About" />
     <div class="row">
@@ -20,7 +20,7 @@
             . Get details on the main characters, episodes and seasons. All available without signing up for an API key!
           </p>
           <p>
-            The main purpose of this API to generate a random quote from the show. There are over 500 quotes between all of the characters.  You can filter these quotes by character, episode or season. In order get access to the quotes, an API key is required. Request a new
+            The main purpose of this API to generate a random quote from the show. There are over 500 quotes between all of the characters. You can filter these quotes by character, episode or season. In order get access to the quotes, an API key is required. Request a new
             <a
               href="#get-key"
             >API key</a> today!
@@ -194,6 +194,12 @@
         </div>
       </div>
     </div>
+    <HeadSection name="Credits" />
+    <div class="row">
+      <div class="col-12">
+        <Credits />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -205,6 +211,7 @@ import FilterSection from "./components/FilterSection";
 import Results from "./components/Results";
 import DocSection from "./components/DocSection";
 import Background from "./components/Background";
+import Credits from "./components/Credits";
 import API from "./utils/api";
 import { create } from "./utils/query";
 import isEmail from "validator/lib/isEmail";
@@ -218,7 +225,8 @@ export default {
     FilterSection,
     Results,
     DocSection,
-    Background
+    Background,
+    Credits
   },
   created() {
     API.docs()
@@ -226,7 +234,7 @@ export default {
       .catch(err => console.log(err));
     const randNum = Math.round(Math.random());
     if (randNum) this.title = "Avatar: The Last API";
-    else this.title = "Avatar: The Legend of API";
+    else this.title = "Avatar: The Legend of the API";
     document.title = this.title;
   },
   data() {
@@ -549,6 +557,12 @@ body {
   margin: 0;
   padding: 0;
 }
+a {
+  color: rgb(39, 38, 38);
+}
+a:visited {
+  color: rgb(151, 192, 230);
+}
 .bg-color {
   background: rgb(230, 230, 230);
   color: rgb(39, 38, 38);
@@ -562,7 +576,7 @@ body {
   border: none;
 }
 .shadow {
-  box-shadow: 0 100px 10px #22222232;
+  box-shadow: 0 100px 10px -10px #22222232;
   margin-bottom: 150px;
 }
 .row {
