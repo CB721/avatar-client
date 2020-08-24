@@ -7,7 +7,7 @@
       <div class="col-12">
         <section id="about-section" class="bg-color border shadow">
           <p>
-            A collection of information from the TV show
+            A collection of information from the TV shows
             <a
               href="https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender"
               target="_blank"
@@ -20,7 +20,7 @@
             . Get details on the main characters, episodes and seasons. All available without signing up for an API key!
           </p>
           <p>
-            The main purpose of this API to generate a random quote from the show. You can filter these quotes by character, episode or season. In order get access to the quotes, an API key is required. Request a new
+            The main purpose of this API to generate a random quote from the show. There are over 500 quotes between all of the characters.  You can filter these quotes by character, episode or season. In order get access to the quotes, an API key is required. Request a new
             <a
               href="#get-key"
             >API key</a> today!
@@ -136,8 +136,7 @@
           <input
             v-model="user.key"
             placeholder="abcdefghijklmnopqrstuvwxyandz"
-            id="key"
-            class="form-input border shadow"
+            class="form-input border shadow key"
             ref="key"
             type="text"
           />
@@ -179,8 +178,7 @@
           <input
             v-model="user.key"
             placeholder="abcdefghijklmnopqrstuvwxyandz"
-            id="key"
-            class="form-input border shadow"
+            class="form-input border shadow key"
             ref="key"
             type="text"
           />

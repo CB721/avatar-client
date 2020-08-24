@@ -14,46 +14,58 @@
       alt="mountain"
       class="front-mountains"
       id="right-mountain"
+      loading="lazy"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="front-mountains"
       id="left-mountain"
+      loading="lazy"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="mid-mountains"
       id="right-mid-mountain"
+      loading="lazy"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="mid-mountains"
       id="left-mid-mountain"
+      loading="lazy"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="far-mountains"
       id="right-far-mountain"
+      loading="lazy"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="far-mountains"
       id="left-far-mountain"
+      loading="lazy"
     />
-    <img src="../assets/images/mountain2.svg" alt="mountain" id="center-mountain" />
+    <img src="../assets/images/mountain2.svg" alt="mountain" id="center-mountain" loading="lazy" />
     <div v-if="avatar === 'Avatar: The Last API'">
-      <img src="../assets/images/aang3.svg" alt="aang crouched with staff" id="avatar" />
+      <img
+        src="../assets/images/aang3.svg"
+        alt="aang crouched with staff"
+        id="avatar"
+        loading="lazy"
+      />
     </div>
     <div v-else>
       <img
         src="../assets/images/korra-mtn.svg"
         alt="korra jumping and bending elements"
         id="avatar"
+        loading="lazy"
       />
     </div>
   </div>
