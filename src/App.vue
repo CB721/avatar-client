@@ -201,6 +201,9 @@
       </div>
     </div>
     <Footer />
+    <div v-if="notificationText">
+      <Notification v-bind="{text: notificationText}"/>
+    </div>
   </div>
 </template>
 
@@ -214,6 +217,7 @@ import DocSection from "./components/DocSection";
 import Background from "./components/Background";
 import Credits from "./components/Credits";
 import Footer from "./components/Footer";
+import Notification from "./components/Notification";
 import API from "./utils/api";
 import { create } from "./utils/query";
 import isEmail from "validator/lib/isEmail";
@@ -229,7 +233,8 @@ export default {
     DocSection,
     Background,
     Credits,
-    Footer
+    Footer,
+    Notification
   },
   created() {
     API.docs()
@@ -243,6 +248,7 @@ export default {
   data() {
     return {
       title: "",
+      notificationText: "",
       filters: [
         {
           name: "Characters",
@@ -412,6 +418,13 @@ export default {
     }
   },
   watch: {
+    notificationText() {
+      if (this.notificationText) {
+        setTimeout(() => {
+          this.notificationText = ""
+        }, 6000);
+      }
+    },
     selectedFilters() {
       this.finalFilter = [];
       this.results = [];
