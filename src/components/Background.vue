@@ -46,13 +46,25 @@
       id="left-far-mountain"
     />
     <img src="../assets/images/mountain2.svg" alt="mountain" id="center-mountain" />
-    <img src="../assets/images/aang3.svg" alt="avatar crouched" id="aang-intro" />
+    <div v-if="avatar === 'Avatar: The Last API'">
+      <img src="../assets/images/aang3.svg" alt="aang crouched with staff" id="avatar" />
+    </div>
+    <div v-else>
+      <img
+        src="../assets/images/korra-mtn.svg"
+        alt="korra jumping and bending elements"
+        id="avatar"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Background"
+  name: "Background",
+  props: {
+    avatar: String
+  }
 };
 </script>
 
@@ -156,7 +168,7 @@ export default {
   width: 100vw;
   left: 0;
 }
-#aang-intro {
+#avatar {
   position: absolute;
   z-index: -99;
   bottom: 0;
@@ -166,6 +178,11 @@ export default {
 @media only screen and (max-width: 500px) {
   #aang-arrow {
     top: -10%;
+  }
+  .front-mountains,
+  .mid-mountains,
+  .far-mountains {
+    display: none;
   }
 }
 </style>

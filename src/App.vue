@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Background />
+    <Background v-bind="{avatar: title}"/>
     <Navbar v-bind="{title: title}" />
     <HeadSection name="About" />
     <div class="row">
@@ -565,7 +565,7 @@ body {
 }
 .shadow {
   box-shadow: 0 100px 10px #22222232;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
 }
 .row {
   width: 95%;
