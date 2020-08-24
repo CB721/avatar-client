@@ -9,55 +9,44 @@
       id="aang-arrow"
       v-rellax="{speed: 3}"
     />
-    <!-- <img
+    <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="front-mountains"
       id="right-mountain"
-      v-rellax="{speed: 2}"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="front-mountains"
       id="left-mountain"
-      v-rellax="{speed: 2}"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="mid-mountains"
       id="right-mid-mountain"
-      v-rellax="{speed: 4}"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="mid-mountains"
       id="left-mid-mountain"
-      v-rellax="{speed: 4}"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="far-mountains"
       id="right-far-mountain"
-      v-rellax="{speed: 6}"
     />
     <img
       src="../assets/images/mountain1.svg"
       alt="mountain"
       class="far-mountains"
       id="left-far-mountain"
-      v-rellax="{speed: 6}"
     />
-    <img
-      src="../assets/images/mountain2.svg"
-      alt="mountain"
-      id="center-mountain"
-      v-rellax="{speed: 10}"
-    />
-    <img src="../assets/images/aang3.svg" alt="aang crouched" id="aang-intro" v-rellax="{speed: 7}" />-->
+    <img src="../assets/images/mountain2.svg" alt="mountain" id="center-mountain" />
+    <img src="../assets/images/aang3.svg" alt="avatar crouched" id="aang-intro" />
   </div>
 </template>
 
@@ -116,24 +105,6 @@ export default {
   bottom: 200;
   right: 0;
 }
-.clouds {
-  width: 100vw;
-  position: absolute;
-}
-.front-clouds {
-  z-index: -99;
-  filter: grayscale(25%);
-  top: 2%;
-  right: 0;
-  left: 0;
-}
-.mid-clouds {
-  z-index: -101;
-  filter: grayscale(50%);
-  top: 5%;
-  right: 0;
-  left: 0;
-}
 .front-mountains,
 .mid-mountains,
 .far-mountains {
@@ -142,57 +113,59 @@ export default {
   position: absolute;
 }
 .front-mountains {
-  z-index: -99;
+  z-index: -90;
 }
 .mid-mountains {
+  height: 65vh;
   z-index: -102;
-  filter: grayscale(25%);
+  filter: grayscale(20%);
 }
 .far-mountains {
+  height: 75vh;
   z-index: -103;
-  filter: grayscale(50%);
+  filter: grayscale(35%);
 }
 #right-mountain {
-  top: 22%;
-  right: 5%;
+  bottom: 0;
+  right: 0;
 }
 #right-mid-mountain {
-  top: 21%;
-  right: 15%;
+  bottom: 0;
+  right: 5%;
 }
 #right-far-mountain {
-  top: 20%;
+  bottom: 0;
   right: 0%;
 }
 #left-mountain {
-  top: 22%;
-  left: 5%;
+  bottom: 0;
+  left: 0;
 }
 #left-mid-mountain {
-  top: 21%;
-  left: 15%;
+  bottom: 0;
+  left: 5%;
 }
 #left-far-mountain {
-  top: 20%;
+  bottom: 0;
   left: 0;
 }
 #center-mountain {
   position: absolute;
   z-index: -99;
-  top: 25%;
+  bottom: 0;
   width: 100vw;
   left: 0;
 }
 #aang-intro {
   position: absolute;
   z-index: -99;
-  top: 20%;
+  bottom: 0;
   width: 100vw;
   left: 0;
 }
 @media only screen and (max-width: 500px) {
   #aang-arrow {
-    top: 10%;
+    top: -10%;
   }
 }
 </style>

@@ -1,17 +1,23 @@
 <template>
   <div id="app">
     <Background />
-    <Navbar v-bind="{title: title}"/>
+    <Navbar v-bind="{title: title}" />
     <HeadSection name="About" />
     <div class="row">
       <div class="col-12">
         <section id="about-section" class="bg-color border shadow">
           <p>
-            A collection of information from the TV show:
+            A collection of information from the TV show
             <a
               href="https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender"
               target="_blank"
-            >Avatar: The Last Airbender</a>. Get details on the main characters, episodes and seasons. All available without signing up for an API key!
+            >Avatar: The Last Airbender</a>
+            and
+            <a
+              href="https://en.wikipedia.org/wiki/The_Legend_of_Korra"
+              target="_blank"
+            >Avatar: The Legend of Korra</a>
+            . Get details on the main characters, episodes and seasons. All available without signing up for an API key!
           </p>
           <p>
             The main purpose of this API to generate a random quote from the show. You can filter these quotes by character, episode or season. In order get access to the quotes, an API key is required. Request a new
@@ -136,7 +142,10 @@
             type="text"
           />
         </form>
-        <button class="submit-form border shadow" v-on:click="updateDeleteKey($event, true)">Get a New Key</button>
+        <button
+          class="submit-form border shadow"
+          v-on:click="updateDeleteKey($event, true)"
+        >Get a New Key</button>
       </div>
       <div v-if="user.key">
         <div class="col-6">
@@ -217,9 +226,9 @@ export default {
     API.docs()
       .then(res => (this.docs = res.data))
       .catch(err => console.log(err));
-    const randNum = Math.round(Math.random())
-    if (randNum) this.title = "Avatar: The Last API"
-    else this.title = "Avatar: The Legend of API"
+    const randNum = Math.round(Math.random());
+    if (randNum) this.title = "Avatar: The Last API";
+    else this.title = "Avatar: The Legend of API";
     document.title = this.title;
   },
   data() {
@@ -616,7 +625,8 @@ form {
   width: calc(100% - 3px);
   height: calc(10vh - 3px);
 }
-.form-input, .submit-form {
+.form-input,
+.submit-form {
   background: rgb(230, 230, 230);
   color: rgb(39, 38, 38);
   border: 3px solid transparent;
