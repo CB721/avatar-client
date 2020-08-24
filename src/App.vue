@@ -467,6 +467,7 @@ export default {
           .then(res => {
             this.finalFilter = res.data;
             this.results = res.data;
+            this.scrollToSection("results");
           })
           .catch(err => console.log(err));
       } else if (this.categorySelection === "Episodes") {

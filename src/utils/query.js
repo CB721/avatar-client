@@ -6,8 +6,8 @@ module.exports = {
         let method = "GET";
         switch (category) {
             case "Characters":
-                if (sort === "element") tempURL + `all?element=${id}`;
-                else tempURL + `one?id=${+ id}`;
+                if (sort === "element") tempURL += `all?element=${id}`
+                else tempURL += `one?id=${+ id}`;
                 break;
             case "Quotes":
                 tempURL += `all?${sort}=${id}`;
@@ -25,6 +25,7 @@ module.exports = {
             default:
                 return;
         }
-        return {url: tempURL, method};
+        console.log(tempURL)
+        return { url: tempURL, method };
     }
 }
