@@ -74,4 +74,9 @@ section:first-child {
 span {
   padding: 0.25rem;
 }
+@media only screen and (max-width: 500px) {
+    section:first-child {
+        text-align: center;
+    }
+}
 </style>

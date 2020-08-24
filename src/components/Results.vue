@@ -1,5 +1,6 @@
 <template>
   <section class="results bg-color shadow border">
+    <div id="results" />
     <h3>Results</h3>
     <div class="results-box bg-color-black border">{{results}}</div>
     <h3>Endpoint URL</h3>

@@ -161,7 +161,6 @@ header {
   .sub-routes {
     width: 90%;
     display: inline-block;
-    /* padding: 2%; */
     margin: 0 2.5%;
   }
   .sub-route {

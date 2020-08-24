@@ -109,4 +109,12 @@ export default {
 li {
   list-style: none;
 }
+@media only screen and (max-width: 500px) {
+    #credits {
+        display: inline-block;
+    }
+    .credit-section {
+        width: 100%;
+    }
+}
 </style>

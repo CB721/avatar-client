@@ -26,7 +26,8 @@
 export default {
   name: "Navbar",
   props: {
-    title: String
+    title: String,
+    scrollToSection: Function
   },
   data() {
     return {
@@ -35,10 +36,6 @@ export default {
     };
   },
   methods: {
-    scrollToSection(id) {
-      const section = document.getElementById(id);
-      section.scrollIntoView({ behavior: "smooth" });
-    },
     expandMenu(event) {
       event.preventDefault();
       this.isExpanded = !this.isExpanded;

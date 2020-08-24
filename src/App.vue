@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Background v-bind="{avatar: title}" />
-    <Navbar v-bind="{title: title}" />
+    <Navbar v-bind="{title: title, scrollToSection: scrollToSection}" />
     <HeadSection name="About" />
     <div class="row">
       <div class="col-12">
@@ -405,6 +405,10 @@ export default {
             });
         }
       }
+    },
+    scrollToSection(id) {
+      const section = document.getElementById(id);
+      section.scrollIntoView({ behavior: "smooth" });
     }
   },
   watch: {
@@ -494,23 +498,27 @@ export default {
             API.oneCharacter(id)
               .then(res => {
                 this.results = [res.data];
+                this.scrollToSection("results");
               })
               .catch(err => console.log(err));
           } else {
             API.allCharacters(id)
               .then(res => {
                 this.results = res.data;
+                this.scrollToSection("results");
               })
               .catch(err => console.log(err));
           }
           break;
         case "Quotes":
           this.results = API.quotes();
+          this.scrollToSection("results");
           break;
         case "Episodes":
           API.oneEpisode(id)
             .then(res => {
               this.results = [res.data];
+              this.scrollToSection("results");
             })
             .catch(err => console.log(err));
           break;
@@ -518,6 +526,7 @@ export default {
           API.oneSeason(id)
             .then(res => {
               this.results = [res.data];
+              this.scrollToSection("results");
             })
             .catch(err => console.log(err));
           break;
@@ -629,16 +638,7 @@ form {
 .submit-form:focus {
   outline: none !important;
   border: 3px solid rgb(0, 195, 255);
-  box-shadow: 0 0 0.25rem #dfe0e0;
   transition: 0.3s;
-}
-.form-input:focus {
-  width: calc(95% - 3px);
-  height: calc(5vh - 3px);
-}
-.submit-form:focus {
-  width: calc(100% - 3px);
-  height: calc(10vh - 3px);
 }
 .form-input,
 .submit-form {
