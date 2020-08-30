@@ -107,7 +107,9 @@
       <div v-if="user.key">
         <div class="col-6">
           <OptionHeader option="Your API key" />
-          <p class="api-key">{{user.key}}</p>
+          <div class="border bg-color signup-results">
+            <p class="api-key">{{user.key}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -149,7 +151,9 @@
       <div v-if="user.key">
         <div class="col-6">
           <OptionHeader option="Your API key" />
-          <p class="api-key">{{user.key}}</p>
+          <div class="border bg-color signup-results">
+            <p class="api-key">{{user.key}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -202,7 +206,7 @@
     </div>
     <Footer />
     <div v-if="notificationText">
-      <Notification v-bind="{text: notificationText}"/>
+      <Notification v-bind="{text: notificationText}" />
     </div>
   </div>
 </template>
@@ -315,6 +319,7 @@ export default {
       if (this.categorySelection === "Quotes") {
         this.finalSelection = 1;
         this.explanation = "An API key is required in the request body.";
+        this.notificationText = "Don't forget to use an API key in the request body!"
       } else {
         this.explanation = "";
       }
@@ -339,6 +344,7 @@ export default {
         API.createUser(this.user)
           .then(({ data }) => {
             this.user.key = data.api_key;
+            this.notificationText = "Welcome to team avatar!";
           })
           .catch(err => {
             console.error(err);
@@ -421,7 +427,7 @@ export default {
     notificationText() {
       if (this.notificationText) {
         setTimeout(() => {
-          this.notificationText = ""
+          this.notificationText = "";
         }, 6000);
       }
     },
@@ -569,6 +575,8 @@ body {
     rgb(128, 111, 180) 100%
   );
   box-shadow: inset 0 0 100px rgb(39, 38, 38);
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -576,8 +584,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: white;
   position: relative;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  
 }
 * {
   margin: 0;
@@ -680,6 +687,11 @@ form {
 }
 #about-section p {
   padding: 1rem;
+}
+.signup-results {
+  width: 100%;
+  line-height: 5vh;
+  height: 25vh;
 }
 @media only screen and (max-width: 768px) {
   .row {
