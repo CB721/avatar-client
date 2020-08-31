@@ -25,7 +25,14 @@ module.exports = {
             default:
                 return;
         }
-        console.log(tempURL)
         return { url: tempURL, method };
+    },
+    covertToLowerCase: (strObj) => {
+        for (const key in strObj) {
+            if (strObj[key] && typeof (strObj[key] === 'string')) {
+                strObj[key] = strObj[key].toLowerCase();
+            }
+        }
+        return strObj;
     }
 }

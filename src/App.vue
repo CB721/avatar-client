@@ -139,7 +139,7 @@
             v-model="user.tempKey"
             placeholder="abcdefghijklmnopqrstuvwxyandz"
             class="form-input border shadow key"
-            ref="key"
+            ref="updateKey"
             type="text"
           />
         </form>
@@ -183,7 +183,7 @@
             v-model="user.tempKey"
             placeholder="abcdefghijklmnopqrstuvwxyandz"
             class="form-input border shadow key"
-            ref="key"
+            ref="deleteKey"
             type="text"
           />
         </form>
@@ -223,7 +223,7 @@ import Credits from "./components/Credits";
 import Footer from "./components/Footer";
 import Notification from "./components/Notification";
 import API from "./utils/api";
-import { create } from "./utils/query";
+import { create, covertToLowerCase } from "./utils/query";
 import isEmail from "validator/lib/isEmail";
 
 export default {
@@ -349,14 +349,13 @@ export default {
       } else {
         this.formError.create = "";
         this.user.deleted = false;
+        this.user = covertToLowerCase(this.user);
         API.createUser(this.user)
           .then(({ data }) => {
             this.user.key = data.api_key;
             this.notificationText = "Welcome to team avatar!";
           })
           .catch(err => {
-            console.error(err);
-            console.error(err.response);
             if (err.response.status == "409") {
               this.formError = "Email already exists";
               this.$refs.email.focus();
@@ -383,17 +382,17 @@ export default {
         isUpdate
           ? this.$refs.updateEmail.focus()
           : this.$refs.deleteEmail.focus();
-      } else if (!this.user.key) {
+      } else if (!this.user.tempKey) {
         isUpdate
           ? (this.formError.update = "API key required")
           : (this.formError.delete = "API key required");
         this.$refs.key.focus();
       } else {
         this.formError = "";
-        const updateObj = {
+        const updateObj = covertToLowerCase({
           email: this.user.email,
           key: this.user.key
-        };
+        });
         if (isUpdate) {
           this.user.deleted = false;
           API.updateUser(updateObj)
@@ -401,36 +400,40 @@ export default {
               this.user.key = data.api_key;
             })
             .catch(err => {
-              console.error(err);
-              console.error(err.response);
-              if (err.response.data === "Invalid API key") {
-                this.formError = "Invalid API key";
-                this.$refs.key.focus();
+              if (
+                err.response.data === "Invalid API key" ||
+                err.response.data === "Email and API key required"
+              ) {
+                this.formError.update = "Invalid API key";
+                this.$refs.updateKey.focus();
               } else if (err.response.data === "Invalid email") {
-                this.formError = "Invalid email";
-                this.$refs.key.focus();
+                this.formError.update = "Invalid email";
+                this.$refs.updateEmail.focus();
               } else if (err.response.data === "User not found") {
-                this.formError = "User not found";
+                this.formError.update = "User not found";
+                this.$refs.updateEmail.focus();
               } else {
-                this.formError = "Server error.  Please try again";
+                this.formError.update = "Server error.  Please try again.";
               }
             });
         } else {
           API.deleteUser(updateObj)
             .then(() => (this.user.isDeleted = true))
             .catch(err => {
-              console.error(err);
-              console.error(err.response);
-              if (err.response.data === "Invalid API key") {
-                this.formError = "Invalid API key";
-                this.$refs.key.focus();
+              if (
+                err.response.data === "Invalid API key" ||
+                err.response.data === "Email and API key required"
+              ) {
+                this.formError.delete = "Invalid API key";
+                this.$refs.deleteKey.focus();
               } else if (err.response.data === "Invalid email") {
-                this.formError = "Invalid email";
-                this.$refs.key.focus();
+                this.formError.delete = "Invalid email";
+                this.$refs.deleteEmail.focus();
               } else if (err.response.data === "User not found") {
-                this.formError = "User not found";
+                this.formError.delete = "User not found";
+                this.$refs.deleteEmail.focus();
               } else {
-                this.formError = "Server error.  Please try again";
+                this.formError.update = "Server error.  Please try again.";
               }
             });
         }
