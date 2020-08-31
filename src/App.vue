@@ -65,9 +65,9 @@
     <div class="row">
       <div class="col-6">
         <OptionHeader option="Sign Up" />
-        <div v-if="formError">
-          <h3 id="form-error">
-            <strong>{{formError}}</strong>
+        <div v-if="formError.create">
+          <h3 class="form-error">
+            <strong>{{formError.create}}</strong>
           </h3>
         </div>
         <form>
@@ -76,9 +76,9 @@
             v-model="user.email"
             placeholder="toph@teamavatar.com"
             autocomplete="email"
-            id="email"
+            id="create-email"
             class="form-input border shadow"
-            ref="email"
+            ref="createEmail"
             type="email"
           />
           <label for="first-name">Enter your first name</label>
@@ -118,9 +118,9 @@
     <div class="row">
       <div class="col-6">
         <OptionHeader option="Your details" />
-        <div v-if="formError">
-          <h3 id="form-error">
-            <strong>{{formError}}</strong>
+        <div v-if="formError.update">
+          <h3 class="form-error">
+            <strong>{{formError.update}}</strong>
           </h3>
         </div>
         <form>
@@ -129,14 +129,14 @@
             v-model="user.email"
             placeholder="toph@teamavatar.com"
             autocomplete="email"
-            id="email"
+            id="update-email"
             class="form-input border shadow"
-            ref="email"
-            type="email"
+            ref="updateEmail"
+            type="update-email"
           />
           <label for="key">Enter your current API key</label>
           <input
-            v-model="user.key"
+            v-model="user.tempKey"
             placeholder="abcdefghijklmnopqrstuvwxyandz"
             class="form-input border shadow key"
             ref="key"
@@ -162,9 +162,9 @@
     <div class="row">
       <div class="col-6">
         <OptionHeader option="Your details" />
-        <div v-if="formError">
-          <h3 id="form-error">
-            <strong>{{formError}}</strong>
+        <div v-if="formError.delete">
+          <h3 class="form-error">
+            <strong>{{formError.delete}}</strong>
           </h3>
         </div>
         <form>
@@ -173,14 +173,14 @@
             v-model="user.email"
             placeholder="toph@teamavatar.com"
             autocomplete="email"
-            id="email"
+            id="delete-email"
             class="form-input border shadow"
-            ref="email"
-            type="email"
+            ref="deleteEmail"
+            type="delete-email"
           />
           <label for="key">Enter your current API key</label>
           <input
-            v-model="user.key"
+            v-model="user.tempKey"
             placeholder="abcdefghijklmnopqrstuvwxyandz"
             class="form-input border shadow key"
             ref="key"
@@ -294,9 +294,14 @@ export default {
         first_name: "",
         last_name: "",
         key: "",
+        tempKey: "",
         isDeleted: false
       },
-      formError: ""
+      formError: {
+        create: "",
+        update: "",
+        delete: ""
+      }
     };
   },
   methods: {
@@ -319,27 +324,30 @@ export default {
       if (this.categorySelection === "Quotes") {
         this.finalSelection = 1;
         this.explanation = "An API key is required in the request body.";
-        this.notificationText = "Don't forget to use an API key in the request body!"
+        this.notificationText =
+          "Don't forget to use an API key in the request body!";
       } else {
         this.explanation = "";
       }
     },
     signUp(event) {
       event.preventDefault();
+      this.formError.update = "";
+      this.formError.delete = "";
       if (!this.user.email) {
-        this.formError = "Email required";
-        this.$refs.email.focus();
+        this.formError.create = "Email required";
+        this.$refs.createEmail.focus();
       } else if (!isEmail(this.user.email)) {
-        this.formError = "Invalid email";
-        this.$refs.email.focus();
+        this.formError.create = "Invalid email";
+        this.$refs.createEmail.focus();
       } else if (!this.user.first_name) {
-        this.formError = "First name required";
+        this.formError.create = "First name required";
         this.$refs.first_name.focus();
       } else if (!this.user.last_name) {
-        this.formError = "Last name required";
+        this.formError.create = "Last name required";
         this.$refs.last_name.focus();
       } else {
-        this.formError = "";
+        this.formError.create = "";
         this.user.deleted = false;
         API.createUser(this.user)
           .then(({ data }) => {
@@ -360,14 +368,25 @@ export default {
     },
     updateDeleteKey(event, isUpdate) {
       event.preventDefault();
+      this.formError.create = "";
       if (!this.user.email) {
-        this.formError = "Email required";
-        this.$refs.email.focus();
+        isUpdate
+          ? (this.formError.update = "Email required")
+          : (this.formError.delete = "Email required");
+        isUpdate
+          ? this.$refs.updateEmail.focus()
+          : this.$refs.deleteEmail.focus();
       } else if (!isEmail(this.user.email)) {
-        this.formError = "Invalid email";
-        this.$refs.email.focus();
+        isUpdate
+          ? (this.formError.update = "Invalid email")
+          : (this.formError.delete = "Invalid email");
+        isUpdate
+          ? this.$refs.updateEmail.focus()
+          : this.$refs.deleteEmail.focus();
       } else if (!this.user.key) {
-        this.formError = "API key required";
+        isUpdate
+          ? (this.formError.update = "API key required")
+          : (this.formError.delete = "API key required");
         this.$refs.key.focus();
       } else {
         this.formError = "";
@@ -379,7 +398,6 @@ export default {
           this.user.deleted = false;
           API.updateUser(updateObj)
             .then(({ data }) => {
-              console.log(data);
               this.user.key = data.api_key;
             })
             .catch(err => {
@@ -584,7 +602,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: white;
   position: relative;
-  
 }
 * {
   margin: 0;
