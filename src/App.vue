@@ -65,11 +65,6 @@
     <div class="row">
       <div class="col-6">
         <OptionHeader option="Sign Up" />
-        <div v-if="formError.create">
-          <h3 class="form-error">
-            <strong>{{formError.create}}</strong>
-          </h3>
-        </div>
         <form>
           <label for="email">Enter your email</label>
           <input
@@ -104,8 +99,8 @@
         </form>
         <button class="submit-form border shadow" v-on:click="signUp">Sign Up</button>
       </div>
-      <div v-if="user.key">
-        <div class="col-6">
+      <div v-if="user.key" class="col-6">
+        <div class="col-12">
           <OptionHeader option="Your API key" />
           <div class="border bg-color signup-results">
             <p class="api-key">{{user.key}}</p>
@@ -118,11 +113,6 @@
     <div class="row">
       <div class="col-6">
         <OptionHeader option="Your details" />
-        <div v-if="formError.update">
-          <h3 class="form-error">
-            <strong>{{formError.update}}</strong>
-          </h3>
-        </div>
         <form>
           <label for="email">Enter your email</label>
           <input
@@ -148,8 +138,8 @@
           v-on:click="updateDeleteKey($event, true)"
         >Get a New Key</button>
       </div>
-      <div v-if="user.key">
-        <div class="col-6">
+      <div v-if="user.key" class="col-6">
+        <div class="col-12">
           <OptionHeader option="Your API key" />
           <div class="border bg-color signup-results">
             <p class="api-key">{{user.key}}</p>
@@ -162,11 +152,6 @@
     <div class="row">
       <div class="col-6">
         <OptionHeader option="Your details" />
-        <div v-if="formError.delete">
-          <h3 class="form-error">
-            <strong>{{formError.delete}}</strong>
-          </h3>
-        </div>
         <form>
           <label for="email">Enter your email</label>
           <input
@@ -206,7 +191,7 @@
     </div>
     <Footer />
     <div v-if="notificationText">
-      <Notification v-bind="{text: notificationText}" />
+      <Notification v-bind="{text: notificationText, err: formError}" />
     </div>
   </div>
 </template>
@@ -297,11 +282,7 @@ export default {
         tempKey: "",
         isDeleted: false
       },
-      formError: {
-        create: "",
-        update: "",
-        delete: ""
-      }
+      formError: false
     };
   },
   methods: {
@@ -332,108 +313,128 @@ export default {
     },
     signUp(event) {
       event.preventDefault();
-      this.formError.update = "";
-      this.formError.delete = "";
       if (!this.user.email) {
-        this.formError.create = "Email required";
+        this.formError = true;
+        this.notificationText = "Email required";
         this.$refs.createEmail.focus();
       } else if (!isEmail(this.user.email)) {
-        this.formError.create = "Invalid email";
+        this.formError = true;
+        this.notificationText = "Invalid email";
         this.$refs.createEmail.focus();
       } else if (!this.user.first_name) {
-        this.formError.create = "First name required";
+        this.formError = true;
+        this.notificationText = "First name required";
         this.$refs.first_name.focus();
       } else if (!this.user.last_name) {
-        this.formError.create = "Last name required";
+        this.formError = true;
+        this.notificationText = "Last name required";
         this.$refs.last_name.focus();
       } else {
-        this.formError.create = "";
         this.user.deleted = false;
         this.user = covertToLowerCase(this.user);
         API.createUser(this.user)
           .then(({ data }) => {
-            this.user.key = data.api_key;
+            this.user.key = data[0].api_key;
             this.notificationText = "Welcome to team avatar!";
+            this.formError = false;
           })
           .catch(err => {
+            this.formError = true;
             if (err.response.status == "409") {
-              this.formError = "Email already exists";
+              this.notificationText = "Email already exists";
               this.$refs.email.focus();
             } else {
-              this.formError = "Server error.  Please try again";
+              if (this.title === "Avatar: The Last API") {
+                this.notificationText =
+                  "Ozai is blocking your path!  Please try again.";
+              } else {
+                this.notificationText =
+                  "Zaheer is blocking your path!  Please try again.";
+              }
             }
           });
       }
     },
     updateDeleteKey(event, isUpdate) {
       event.preventDefault();
-      this.formError.create = "";
       if (!this.user.email) {
-        isUpdate
-          ? (this.formError.update = "Email required")
-          : (this.formError.delete = "Email required");
+        this.formError = true;
+        this.notificationText = "Email required";
         isUpdate
           ? this.$refs.updateEmail.focus()
           : this.$refs.deleteEmail.focus();
       } else if (!isEmail(this.user.email)) {
-        isUpdate
-          ? (this.formError.update = "Invalid email")
-          : (this.formError.delete = "Invalid email");
+        this.formError = true;
+        this.notificationText = "Invalid email";
         isUpdate
           ? this.$refs.updateEmail.focus()
           : this.$refs.deleteEmail.focus();
       } else if (!this.user.tempKey) {
-        isUpdate
-          ? (this.formError.update = "API key required")
-          : (this.formError.delete = "API key required");
-        this.$refs.key.focus();
+        this.formError = true;
+        this.notificationText = "API key required";
+        isUpdate ? this.$refs.updateKey.focus() : this.$refs.deleteKey.focus();
       } else {
-        this.formError = "";
+        this.formError = false;
         const updateObj = covertToLowerCase({
           email: this.user.email,
-          key: this.user.key
+          key: this.user.tempKey
         });
         if (isUpdate) {
           this.user.deleted = false;
           API.updateUser(updateObj)
             .then(({ data }) => {
-              this.user.key = data.api_key;
+              this.user.key = data[0].api_key;
+            })
+            .catch(err => {
+              this.formError = true;
+              if (
+                err.response.data === "Invalid API key" ||
+                err.response.data === "Email and API key required"
+              ) {
+                this.notificationText = "Invalid API key";
+                this.$refs.updateKey.focus();
+              } else if (err.response.data === "Invalid email") {
+                this.notificationText = "Invalid email";
+                this.$refs.updateEmail.focus();
+              } else if (err.response.data === "User not found") {
+                this.notificationText = "User not found";
+                this.$refs.updateEmail.focus();
+              } else {
+                if (this.title === "Avatar: The Last API") {
+                  this.notificationText =
+                    "Ozai is blocking your path!  Please try again.";
+                } else {
+                  this.notificationText =
+                    "Zaheer is blocking your path!  Please try again.";
+                }
+              }
+            });
+        } else {
+          API.deleteUser(updateObj)
+            .then(() => {
+              this.user.isDeleted = true;
             })
             .catch(err => {
               if (
                 err.response.data === "Invalid API key" ||
                 err.response.data === "Email and API key required"
               ) {
-                this.formError.update = "Invalid API key";
-                this.$refs.updateKey.focus();
-              } else if (err.response.data === "Invalid email") {
-                this.formError.update = "Invalid email";
-                this.$refs.updateEmail.focus();
-              } else if (err.response.data === "User not found") {
-                this.formError.update = "User not found";
-                this.$refs.updateEmail.focus();
-              } else {
-                this.formError.update = "Server error.  Please try again.";
-              }
-            });
-        } else {
-          API.deleteUser(updateObj)
-            .then(() => (this.user.isDeleted = true))
-            .catch(err => {
-              if (
-                err.response.data === "Invalid API key" ||
-                err.response.data === "Email and API key required"
-              ) {
-                this.formError.delete = "Invalid API key";
+                this.notificationText = "Invalid API key";
                 this.$refs.deleteKey.focus();
               } else if (err.response.data === "Invalid email") {
-                this.formError.delete = "Invalid email";
+                this.notificationText = "Invalid email";
                 this.$refs.deleteEmail.focus();
               } else if (err.response.data === "User not found") {
-                this.formError.delete = "User not found";
+                this.notificationText = "User not found";
                 this.$refs.deleteEmail.focus();
               } else {
-                this.formError.update = "Server error.  Please try again.";
+                if (this.title === "Avatar: The Last API") {
+                  this.notificationText =
+                    "Ozai is blocking your path!  Please try again.";
+                } else {
+                  this.notificationText =
+                    "Zaheer is blocking your path!  Please try again.";
+                }
               }
             });
         }
@@ -711,7 +712,7 @@ form {
 .signup-results {
   width: 100%;
   line-height: 5vh;
-  height: 25vh;
+  height: calc(5vh + 5%);
 }
 @media only screen and (max-width: 768px) {
   .row {
