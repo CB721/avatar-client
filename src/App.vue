@@ -26,6 +26,7 @@
             >API key</a> today!
           </p>
         </section>
+        <Endpoint />
       </div>
     </div>
     <HeadSection name="Docs" />
@@ -39,6 +40,7 @@
         </div>
       </div>
     </div>
+    <Endpoint />
     <HeadSection name="Examples" />
     <div class="row">
       <div class="col-4">
@@ -55,6 +57,7 @@
         <FilterSection v-bind="{filters: finalFilter, action: getResults}" />
       </div>
     </div>
+    <Endpoint />
     <div v-if="results.length" class="row">
       <div class="col-12">
         <Results v-bind="{results: results, explanation: explanation, query: query}" />
@@ -207,6 +210,7 @@ import Background from "./components/Background";
 import Credits from "./components/Credits";
 import Footer from "./components/Footer";
 import Notification from "./components/Notification";
+import Endpoint from "./components/Endpoint";
 import API from "./utils/api";
 import { create, covertToLowerCase } from "./utils/query";
 import isEmail from "validator/lib/isEmail";
@@ -223,7 +227,8 @@ export default {
     Background,
     Credits,
     Footer,
-    Notification
+    Notification,
+    Endpoint
   },
   created() {
     API.docs()
@@ -692,11 +697,6 @@ form {
   width: 100%;
   height: 10vh;
   line-height: 10vh;
-}
-.form-error {
-  text-align: center;
-  margin: 2.5vh auto;
-  color: red;
 }
 .api-key {
   text-align: center;

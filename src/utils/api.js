@@ -1,6 +1,6 @@
 import axios from 'axios';
-let url = "http://localhost:3001/api/";
-// const url = "https://avatar-api-cb.herokuapp.com/api/";
+// let url = "http://localhost:3001/api/";
+const url = "https://avatar-api-cb.herokuapp.com/api/";
 
 export default {
     allCharacters: (element) => {

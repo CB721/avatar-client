@@ -107,6 +107,7 @@ li:hover,
 }
 .title {
   justify-content: center;
+  text-align: center;
   font-family: Avatar, Avenir, Helvetica, Arial, sans-serif;
 }
 .links {
