@@ -5,19 +5,23 @@
     </section>
     <section>
       <div class="social-links">
-        <a href="https://www.linkedin.com/in/clint-brodar-b4233b177" target="_blank">
+        <a
+          href="https://www.linkedin.com/in/clint-brodar-b4233b177"
+          target="_blank"
+          rel="noreferrer"
+        >
           <span class="fab fa-linkedin" />
           <span>LinkedIn</span>
         </a>
       </div>
       <div class="social-links">
-        <a href="https://github.com/CB721" target="_blank">
+        <a href="https://github.com/CB721" target="_blank" rel="noreferrer">
           <span class="fab fa-github" />
           <span>GitHub</span>
         </a>
       </div>
       <div class="social-links">
-        <a href="https://cb721.github.io/ClintBrodarPortfolio" target="_blank">
+        <a href="https://cb721.github.io/ClintBrodarPortfolio" target="_blank" rel="noreferrer">
           <span class="fas fa-address-card" />
           <span>Portfolio</span>
         </a>
@@ -75,8 +79,8 @@ span {
   padding: 0.25rem;
 }
 @media only screen and (max-width: 500px) {
-    section:first-child {
-        text-align: center;
-    }
+  section:first-child {
+    text-align: center;
+  }
 }
 </style>
