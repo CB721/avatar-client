@@ -69,7 +69,7 @@
       <div class="col-6">
         <OptionHeader option="Sign Up" />
         <form>
-          <label for="email">Enter your email</label>
+          <label for="create-email">Enter your email</label>
           <input
             v-model="user.email"
             placeholder="toph@teamavatar.com"
@@ -106,7 +106,7 @@
         <div class="col-12">
           <OptionHeader option="Your API key" />
           <div class="border bg-color signup-results">
-            <p class="api-key">{{user.key}}</p>
+            <p class="api-key" aria-label="New API key">{{user.key}}</p>
           </div>
         </div>
       </div>
@@ -117,7 +117,7 @@
       <div class="col-6">
         <OptionHeader option="Your details" />
         <form>
-          <label for="email">Enter your email</label>
+          <label for="update-email">Enter your email</label>
           <input
             v-model="user.email"
             placeholder="toph@teamavatar.com"
@@ -127,12 +127,13 @@
             ref="updateEmail"
             type="update-email"
           />
-          <label for="key">Enter your current API key</label>
+          <label for="updateKey">Enter your current API key</label>
           <input
             v-model="user.tempKey"
             placeholder="abcdefghijklmnopqrstuvwxyandz"
             class="form-input border shadow key"
             ref="updateKey"
+            id="updateKey"
             type="text"
           />
         </form>
@@ -145,7 +146,7 @@
         <div class="col-12">
           <OptionHeader option="Your API key" />
           <div class="border bg-color signup-results">
-            <p class="api-key">{{user.key}}</p>
+            <p class="api-key" aria-label="Updated API key">{{user.key}}</p>
           </div>
         </div>
       </div>
@@ -156,7 +157,7 @@
       <div class="col-6">
         <OptionHeader option="Your details" />
         <form>
-          <label for="email">Enter your email</label>
+          <label for="delete-email">Enter your email</label>
           <input
             v-model="user.email"
             placeholder="toph@teamavatar.com"
@@ -166,12 +167,13 @@
             ref="deleteEmail"
             type="delete-email"
           />
-          <label for="key">Enter your current API key</label>
+          <label for="deleteKey">Enter your current API key</label>
           <input
             v-model="user.tempKey"
             placeholder="abcdefghijklmnopqrstuvwxyandz"
             class="form-input border shadow key"
             ref="deleteKey"
+            id="deleteKey"
             type="text"
           />
         </form>
