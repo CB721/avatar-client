@@ -11,11 +11,13 @@
             <a
               href="https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender"
               target="_blank"
+              rel="noopener"
             >Avatar: The Last Airbender</a>
             and
             <a
               href="https://en.wikipedia.org/wiki/The_Legend_of_Korra"
               target="_blank"
+              rel="noopener"
             >Avatar: The Legend of Korra</a>
             . Get details on the main characters, episodes and seasons. All available without signing up for an API key!
           </p>

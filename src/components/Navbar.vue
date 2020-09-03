@@ -7,17 +7,15 @@
       <li v-on:click="scrollToSection('about-section')">About</li>
       <li v-on:click="scrollToSection('docs-section')">Docs</li>
       <li v-on:click="scrollToSection('example-section')">Examples</li>
-      <div v-if="isExpanded" id="nav-dropdown">
+      <li v-if="isExpanded" id="nav-dropdown">
         <select v-model="selected" v-on:click="selectOption" class="border">
           <option disabled value>Please select one</option>
           <option class="key-option" value="get-key">Request API Key</option>
           <option class="key-option" value="update-key">Update an existing key</option>
           <option class="key-option" value="delete-key">Delete API Key</option>
         </select>
-      </div>
-      <div v-else id="nav-dropdown">
-        <li v-on:click="expandMenu">Key</li>
-      </div>
+      </li>
+      <li v-else id="nav-dropdown" v-on:click="expandMenu">Key</li>
     </ul>
   </nav>
 </template>
@@ -109,6 +107,7 @@ li:hover,
   justify-content: center;
   text-align: center;
   font-family: Avatar, Avenir, Helvetica, Arial, sans-serif;
+  font-display: swap;
 }
 .links {
   justify-content: space-evenly;

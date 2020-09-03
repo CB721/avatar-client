@@ -7,6 +7,7 @@
       src="../assets/images/aang-arrow.svg"
       alt="aang arrow"
       id="aang-arrow"
+      loading="lazy"
       v-rellax="{speed: 5}"
     />
     <img
