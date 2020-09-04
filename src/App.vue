@@ -27,6 +27,7 @@
               href="#get-key"
             >API key</a> today!
           </p>
+          <p>All of the information is return as JSON. If you request data in a different format, you will not receive the applicable information.</p>
         </section>
         <Endpoint />
       </div>
@@ -219,6 +220,23 @@ import API from "./utils/api";
 import { create, covertToLowerCase } from "./utils/query";
 import isEmail from "validator/lib/isEmail";
 
+document.addEventListener("mousemove", event => {
+  // get the window dimensions and select the halfway point
+  let midX = window.innerWidth / 2;
+  let midY = window.innerHeight / 2;
+  // get the position of the mouse
+  let posX = event.clientX;
+  let posY = event.clientY;
+  // get percentage of difference compared to halfway point
+  let xPercent = posX / midX - 1;
+  let yPercent = posY / midY - 1;
+  let xCSS = ((xPercent * 30).toFixed(4) * -1).toString() + "px";
+  let yCSS = (((yPercent * 75).toFixed(4) + 25) * -1).toString() + "px";
+
+  document.documentElement.style.setProperty("--vertical", yCSS);
+  document.documentElement.style.setProperty("--horizontal", xCSS);
+});
+
 export default {
   name: "App",
   components: {
@@ -313,9 +331,9 @@ export default {
       this.finalSelection = id;
       if (this.categorySelection === "Quotes") {
         this.finalSelection = 1;
-        this.explanation = "An API key is required in the request body.";
+        this.explanation = "An API key is required in the request header.";
         this.notificationText =
-          "Don't forget to use an API key in the request body!";
+          "Don't forget to use an API key in the request header!";
       } else {
         this.explanation = "";
       }
@@ -639,8 +657,12 @@ a:visited {
   border: none;
 }
 .shadow {
-  box-shadow: 0 100px 10px -10px #22222232;
-  margin-bottom: 150px;
+  box-shadow: var(--horizontal, "0px") var(--vertical, "0px") 10px -10px #22222232;
+  -moz-box-shadow: var(--horizontal, "0px") var(--vertical, "0px") 10px 10px
+    #22222232;
+  box-shadow: var(--horizontal, "0px") var(--vertical, "0px") 10px 10px
+    #22222232;
+  margin: 75px 0;
 }
 .row {
   width: 95%;
