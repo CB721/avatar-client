@@ -8,7 +8,7 @@ export default {
         else return axios.get(`${url}characters/all`);
     },
     oneCharacter: (id) => {
-        return axios.get(`${url}characters/one/?id=${id}`);
+        return axios.get(`${url}characters/sample/?id=${id}`);
     },
     allElements: () => {
         return axios.get(`${url}elements/all`);
@@ -18,7 +18,7 @@ export default {
         return axios.get(`${url}episodes/all/${randomPage}`);
     },
     oneEpisode: (id) => {
-        return axios.get(`${url}episodes/one/${id}`);
+        return axios.get(`${url}episodes/sample/${id}`);
     },
     allSeasons: () => {
         return axios.get(`${url}seasons/all`);
@@ -115,7 +115,6 @@ export default {
         return axios.patch(`${url}users/create`, data);
     },
     deleteUser: (data) => {
-        console.log(data);
         return axios.post(`${url}users/remove`, data);
     }
 }
