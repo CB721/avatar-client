@@ -1,17 +1,26 @@
 <template>
   <section class="docs">
     <header class="bg-color border shadow">
-      <h3 class="route-name"><u>Main Route: {{content.mainRoute}}</u></h3>
-      <p class="request-type">Request Type: {{content.requestType}}</p>
+      <h3 class="route-name">
+        <u>Main Route: {{ content.mainRoute }}</u>
+      </h3>
+      <p class="request-type">Request Type: {{ content.requestType }}</p>
     </header>
     <div class="sub-routes">
-      <div v-if="content.subRoutes.all || content.subRoutes.sample" class="sub-route bg-color border shadow">
-        <p class="route"><strong>Sub Route: {{content.subRoutes.all.route}}</strong></p>
+      <div
+        v-if="content.subRoutes.all"
+        class="sub-route bg-color border shadow"
+      >
+        <p class="route">
+          <strong>Sub Route: {{ content.subRoutes.all.route }}</strong>
+        </p>
         <div v-if="content.subRoutes.all.description">
-          <p class="desc">Description: {{content.subRoutes.all.description}}</p>
+          <p class="desc">
+            Description: {{ content.subRoutes.all.description }}
+          </p>
         </div>
         <div v-if="content.subRoutes.all.example">
-          <p class="example">Example: {{content.subRoutes.all.example}}</p>
+          <p class="example">Example: {{ content.subRoutes.all.example }}</p>
         </div>
         <div v-if="content.subRoutes.all.headers">
           <p class="params-header">
@@ -26,7 +35,9 @@
               Key:
               <em>{{ headerName }}</em>
             </p>
-            <div v-for="(detail, name) in headerDetails" v-bind:key="name">{{name}}: {{detail}}</div>
+            <div v-for="(detail, name) in headerDetails" v-bind:key="name">
+              {{ name }}: {{ detail }}
+            </div>
           </div>
         </div>
         <div v-if="content.subRoutes.all.params">
@@ -42,17 +53,26 @@
               Param:
               <em>{{ paramName }}</em>
             </p>
-            <div v-for="(detail, name) in paramDetails" v-bind:key="name">{{name}}: {{detail}}</div>
+            <div v-for="(detail, name) in paramDetails" v-bind:key="name">
+              {{ name }}: {{ detail }}
+            </div>
           </div>
         </div>
       </div>
-      <div v-if="content.subRoutes.one" class="sub-route bg-color border shadow">
-        <p class="route"><strong>Sub Route: {{content.subRoutes.one.route}}</strong></p>
+      <div
+        v-if="content.subRoutes.one"
+        class="sub-route bg-color border shadow"
+      >
+        <p class="route">
+          <strong>Sub Route: {{ content.subRoutes.one.route || content.subRoutes.sample }}</strong>
+        </p>
         <div v-if="content.subRoutes.one.description">
-          <p class="desc">Description: {{content.subRoutes.one.description}}</p>
+          <p class="desc">
+            Description: {{ content.subRoutes.one.description }}
+          </p>
         </div>
         <div v-if="content.subRoutes.one.example">
-          <p class="example">{{content.subRoutes.one.example}}</p>
+          <p class="example">{{ content.subRoutes.one.example }}</p>
         </div>
         <div v-if="content.subRoutes.one.params">
           <p class="params-header">
@@ -67,7 +87,9 @@
               Param:
               <em>{{ paramName }}</em>
             </p>
-            <div v-for="(detail, name) in paramDetails" v-bind:key="name">{{name}}: {{detail}}</div>
+            <div v-for="(detail, name) in paramDetails" v-bind:key="name">
+              {{ name }}: {{ detail }}
+            </div>
           </div>
         </div>
       </div>
@@ -79,7 +101,7 @@
 export default {
   name: "DocSection",
   props: {
-    content: Object
+    content: Object,
   }
 };
 </script>
@@ -130,7 +152,8 @@ header {
   width: 90%;
   padding: 5%;
 }
-.param:nth-child(2), .param:nth-child(3) {
+.param:nth-child(2),
+.param:nth-child(3) {
   margin: 1rem 0;
 }
 @media only screen and (max-width: 500px) {

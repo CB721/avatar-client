@@ -15,16 +15,58 @@ export default {
     },
     allEpisodes: () => {
         const randomPage = Math.floor(Math.random() * 10) + 1;
-        return axios.get(`${url}episodes/all/?page=${randomPage}`);
+        return axios.get(`${url}episodes/all/${randomPage}`);
     },
     oneEpisode: (id) => {
-        return axios.get(`${url}episodes/one/?id=${id}`);
+        return axios.get(`${url}episodes/one/${id}`);
     },
     allSeasons: () => {
         return axios.get(`${url}seasons/all`);
     },
     oneSeason: (id) => {
-        return axios.get(`${url}seasons/one/?id=${id}`);
+        return axios.get(`${url}seasons/all/?id=${id}`);
+    },
+    quoteCharacters: () => {
+        const dummyData = [
+            {
+                "id": 1,
+                "char_name": "Aang"
+            },
+            {
+                "id": 4,
+                "char_name": "Iroh"
+            },
+            {
+                "id": 8,
+                "char_name": "Sokka"
+            },
+            {
+                "id": 9,
+                "char_name": "Toph Beifong"
+            },
+        ]
+        return dummyData;
+    },
+    quotesEpisodes: () => {
+        const dummyData = [
+            {
+                "id": 6,
+                "title": "The Headband"
+            },
+            {
+                "id": 6,
+                "title": "Avatar Day"
+            },
+            {
+                "id": 6,
+                "title": "The Earth King"
+            },
+            {
+                "id": 6,
+                "title": "The Boy in the Iceberg"
+            },
+        ]
+        return dummyData;
     },
     quotes: () => {
         const dummyData = [

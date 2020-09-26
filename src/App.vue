@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Background v-bind="{avatar: title}" />
-    <Navbar v-bind="{title: title, scrollToSection: scrollToSection}" />
+    <Background v-bind="{ avatar: title }" />
+    <Navbar v-bind="{ title: title, scrollToSection: scrollToSection }" />
     <HeadSection name="About" />
     <div class="row">
       <div class="col-12">
@@ -12,22 +12,29 @@
               href="https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender"
               target="_blank"
               rel="noopener"
-            >Avatar: The Last Airbender</a>
+              >Avatar: The Last Airbender</a
+            >
             and
             <a
               href="https://en.wikipedia.org/wiki/The_Legend_of_Korra"
               target="_blank"
               rel="noopener"
-            >Avatar: The Legend of Korra</a>
-            . Get details on the main characters, episodes and seasons. All available without signing up for an API key!
+              >Avatar: The Legend of Korra</a
+            >
+            . Get details on the main characters, episodes and seasons. All
+            available without signing up for an API key!
           </p>
           <p>
-            The main purpose of this API to generate a random quote from the show. There are over 500 quotes between all of the characters. You can filter these quotes by character, episode or season. In order get access to the quotes, an API key is required. Request a new
-            <a
-              href="#get-key"
-            >API key</a> today!
+            The main purpose of this API to generate a random quote from the
+            show. There are over 500 quotes between all of the characters. You
+            can filter these quotes by character, episode or season. In order
+            get access to the quotes, an API key is required. Request a new
+            <a href="#get-key">API key</a> today!
           </p>
-          <p>All of the information is return as JSON. If you request data in a different format, you will not receive the applicable information.</p>
+          <p>
+            All of the information is return as JSON. If you request data in a
+            different format, you will not receive the applicable information.
+          </p>
         </section>
         <Endpoint />
       </div>
@@ -38,7 +45,7 @@
         <div id="docs-section" />
         <div v-if="docs.length">
           <div v-for="(doc, index) in docs" v-bind:key="index">
-            <DocSection v-bind="{content: doc}" />
+            <DocSection v-bind="{ content: doc }" />
           </div>
         </div>
       </div>
@@ -49,21 +56,30 @@
       <div class="col-4">
         <div id="example-section" />
         <OptionHeader option="Category" />
-        <FilterSection v-bind="{filters: filters, action: categoryFilter}" section="option" />
+        <FilterSection
+          v-bind="{ filters: filters, action: categoryFilter }"
+          section="option"
+        />
       </div>
       <div v-if="selectedFilters.length" class="col-4">
         <OptionHeader option="Sort By" />
-        <FilterSection v-bind="{filters: selectedFilters, action: sortByFilter}" section="filter" />
+        <FilterSection
+          v-bind="{ filters: selectedFilters, action: sortByFilter }"
+          section="filter"
+        />
       </div>
       <div v-if="finalFilter.length" class="col-4">
         <OptionHeader option="Filter" />
-        <FilterSection v-bind="{filters: finalFilter, action: getResults}" />
+        <FilterSection v-bind="{ filters: finalFilter, action: getResults }" />
       </div>
     </div>
     <Endpoint />
-    <div v-if="results.length" class="row">
+    <div class="row">
       <div class="col-12">
-        <Results v-bind="{results: results, explanation: explanation, query: query}" />
+        <div id="results" />
+        <Results
+          v-bind="{ results: results, explanation: explanation, query: query }"
+        />
       </div>
     </div>
     <div id="get-key" />
@@ -103,13 +119,15 @@
             type="text"
           />
         </form>
-        <button class="submit-form border shadow" v-on:click="signUp">Sign Up</button>
+        <button class="submit-form border shadow" v-on:click="signUp">
+          Sign Up
+        </button>
       </div>
       <div v-if="user.key" class="col-6">
         <div class="col-12">
           <OptionHeader option="Your API key" />
           <div class="border bg-color signup-results">
-            <p class="api-key" aria-label="New API key">{{user.key}}</p>
+            <p class="api-key" aria-label="New API key">{{ user.key }}</p>
           </div>
         </div>
       </div>
@@ -143,13 +161,15 @@
         <button
           class="submit-form border shadow"
           v-on:click="updateDeleteKey($event, true)"
-        >Get a New Key</button>
+        >
+          Get a New Key
+        </button>
       </div>
       <div v-if="user.key" class="col-6">
         <div class="col-12">
           <OptionHeader option="Your API key" />
           <div class="border bg-color signup-results">
-            <p class="api-key" aria-label="Updated API key">{{user.key}}</p>
+            <p class="api-key" aria-label="Updated API key">{{ user.key }}</p>
           </div>
         </div>
       </div>
@@ -168,7 +188,7 @@
             id="delete-email"
             class="form-input border shadow"
             ref="deleteEmail"
-            type="delete-email"
+            type="email"
           />
           <label for="deleteKey">Enter your current API key</label>
           <input
@@ -183,11 +203,15 @@
         <button
           class="submit-form border shadow"
           v-on:click="updateDeleteKey($event, false)"
-        >Delete your key</button>
+        >
+          Delete your key
+        </button>
       </div>
       <div v-if="user.isDeleted">
         <div class="col-6">
-          <OptionHeader option="Your API key has successfully been deleted..." />
+          <OptionHeader
+            option="Your API key has successfully been deleted..."
+          />
         </div>
       </div>
     </div>
@@ -199,7 +223,7 @@
     </div>
     <Footer />
     <div v-if="notificationText">
-      <Notification v-bind="{text: notificationText, err: formError}" />
+      <Notification v-bind="{ text: notificationText, err: formError }" />
     </div>
   </div>
 </template>
@@ -220,7 +244,7 @@ import API from "./utils/api";
 import { create, covertToLowerCase } from "./utils/query";
 import isEmail from "validator/lib/isEmail";
 
-document.addEventListener("mousemove", event => {
+document.addEventListener("mousemove", (event) => {
   // get the window dimensions and select the halfway point
   let midX = window.innerWidth / 2;
   let midY = window.innerHeight / 2;
@@ -250,12 +274,14 @@ export default {
     Credits,
     Footer,
     Notification,
-    Endpoint
+    Endpoint,
   },
   created() {
     API.docs()
-      .then(res => (this.docs = res.data))
-      .catch(err => console.log(err));
+      .then((res) => {
+        this.docs = res.data;
+      })
+      .catch((err) => console.log(err));
     const randNum = Math.round(Math.random());
     if (randNum) this.title = "Avatar: The Last API";
     else this.title = "Avatar: The Legend of the API";
@@ -269,28 +295,28 @@ export default {
         {
           name: "Characters",
           multipleFilters: false,
-          filter: ["all", "element"]
+          filter: ["all", "element"],
         },
         {
           name: "Quotes",
           multipleFilters: true,
-          filter: ["all", "charid", "episodeid", "seasonid"]
+          filter: ["all", "charid", "episodeid", "seasonid"],
         },
         {
           name: "Elements",
           multipleFilters: false,
-          filter: ["all"]
+          filter: ["all"],
         },
         {
           name: "Episodes",
           multipleFilters: false,
-          filter: ["all"]
+          filter: ["all"],
         },
         {
           name: "Seasons",
           multipleFilters: false,
-          filter: ["all"]
-        }
+          filter: ["all"],
+        },
       ],
       categorySelection: "",
       sortBySelection: "",
@@ -307,9 +333,9 @@ export default {
         last_name: "",
         key: "",
         tempKey: "",
-        isDeleted: false
+        isDeleted: false,
       },
-      formError: false
+      formError: false,
     };
   },
   methods: {
@@ -365,7 +391,7 @@ export default {
             this.notificationText = "Welcome to team avatar!";
             this.formError = false;
           })
-          .catch(err => {
+          .catch((err) => {
             this.formError = true;
             if (err.response.status == "409") {
               this.notificationText = "Email already exists";
@@ -404,7 +430,7 @@ export default {
         this.formError = false;
         const updateObj = covertToLowerCase({
           email: this.user.email,
-          key: this.user.tempKey
+          key: this.user.tempKey,
         });
         if (isUpdate) {
           this.user.deleted = false;
@@ -412,7 +438,7 @@ export default {
             .then(({ data }) => {
               this.user.key = data[0].api_key;
             })
-            .catch(err => {
+            .catch((err) => {
               this.formError = true;
               if (
                 err.response.data === "Invalid API key" ||
@@ -441,7 +467,7 @@ export default {
             .then(() => {
               this.user.isDeleted = true;
             })
-            .catch(err => {
+            .catch((err) => {
               if (
                 err.response.data === "Invalid API key" ||
                 err.response.data === "Email and API key required"
@@ -469,10 +495,16 @@ export default {
     },
     scrollToSection(id) {
       const section = document.getElementById(id);
+
       section.scrollIntoView({ behavior: "smooth" });
-    }
+    },
   },
   watch: {
+    results() {
+      if (this.results.length) {
+        this.scrollToSection("results");
+      }
+    },
     notificationText() {
       if (this.notificationText) {
         setTimeout(() => {
@@ -483,6 +515,7 @@ export default {
     selectedFilters() {
       this.finalFilter = [];
       this.results = [];
+      this.query = {}
     },
     sortBySelection() {
       if (!this.sortBySelection) return;
@@ -490,16 +523,17 @@ export default {
       if (this.categorySelection === "Characters") {
         if (this.sortBySelection === "all") {
           API.allCharacters()
-            .then(res => {
+            .then((res) => {
               this.finalFilter = res.data;
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
         } else if (this.sortBySelection === "element") {
           API.allElements()
-            .then(res => {
+            .then((res) => {
               this.finalFilter = res.data;
+              this.results = res.data;
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
         }
       } else if (this.categorySelection === "Quotes") {
         switch (this.sortBySelection) {
@@ -507,49 +541,42 @@ export default {
             this.finalFilter = [{ title: "random" }];
             break;
           case "charid":
-            API.allCharacters()
-              .then(res => {
-                this.finalFilter = res.data;
-              })
-              .catch(err => console.log(err));
+            // only show characters from the dummy quote data
+            this.finalFilter = API.quoteCharacters();
             break;
           case "episodeid":
-            API.allEpisodes()
-              .then(res => {
-                this.finalFilter = res.data;
-              })
-              .catch(err => console.log(err));
+            this.finalFilter = API.quotesEpisodes();
             break;
           case "seasonid":
-            API.allSeasons()
-              .then(res => {
-                this.finalFilter = res.data;
-              })
-              .catch(err => console.log(err));
+            this.finalFilter = [
+              {
+                season_num: 1,
+                title: "Book 1: Water",
+              },
+            ];
             break;
           default:
             return;
         }
       } else if (this.categorySelection === "Elements") {
         API.allElements()
-          .then(res => {
+          .then((res) => {
             this.finalFilter = res.data;
             this.results = res.data;
-            this.scrollToSection("results");
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       } else if (this.categorySelection === "Episodes") {
         API.allEpisodes()
-          .then(res => {
+          .then((res) => {
             this.finalFilter = res.data;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       } else if (this.categorySelection === "Seasons") {
         API.allSeasons()
-          .then(res => {
+          .then((res) => {
             this.finalFilter = res.data;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
     },
     finalSelection() {
@@ -565,45 +592,40 @@ export default {
         case "Characters":
           if (this.sortBySelection === "all") {
             API.oneCharacter(id)
-              .then(res => {
+              .then((res) => {
                 this.results = [res.data];
-                this.scrollToSection("results");
               })
-              .catch(err => console.log(err));
+              .catch((err) => console.log(err));
           } else {
             API.allCharacters(id)
-              .then(res => {
+              .then((res) => {
                 this.results = res.data;
-                this.scrollToSection("results");
               })
-              .catch(err => console.log(err));
+              .catch((err) => console.log(err));
           }
           break;
         case "Quotes":
           this.results = API.quotes();
-          this.scrollToSection("results");
           break;
         case "Episodes":
           API.oneEpisode(id)
-            .then(res => {
+            .then((res) => {
               this.results = [res.data];
-              this.scrollToSection("results");
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
           break;
         case "Seasons":
           API.oneSeason(id)
-            .then(res => {
+            .then((res) => {
               this.results = [res.data];
-              this.scrollToSection("results");
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
           break;
         default:
           return;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -621,7 +643,7 @@ body {
     rgb(8, 38, 99) 25%,
     rgb(29, 72, 160) 50%,
     rgb(75, 29, 160) 75%,
-    rgb(128, 111, 180) 100%
+    rgb(142, 119, 212) 100%
   );
   box-shadow: inset 0 0 100px rgb(39, 38, 38);
   overflow-x: hidden;

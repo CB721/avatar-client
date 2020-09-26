@@ -7,20 +7,19 @@ module.exports = {
         switch (category) {
             case "Characters":
                 if (sort === "element") tempURL += `all?element=${id}`
-                else tempURL += `one?id=${+ id}`;
+                else tempURL += `sample/?id=${+ id}`;
                 break;
             case "Quotes":
-                tempURL += `all?${sort}=${id}`;
-                method = "POST";
+                tempURL += `sample/?${sort}=${id}`;
                 break;
             case "Elements":
                 tempURL += "all";
                 break;
             case "Episodes":
-                tempURL += `one/?id=${id}`;
+                tempURL += `sample/?id=${id}`;
                 break;
             case "Seasons":
-                tempURL += `one/?id=${id}`;
+                tempURL += `all/?id=${id}`;
                 break;
             default:
                 return;

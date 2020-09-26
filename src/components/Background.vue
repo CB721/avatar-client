@@ -8,7 +8,7 @@
       alt="aang arrow"
       id="aang-arrow"
       loading="lazy"
-      v-rellax="{speed: 5}"
+      v-rellax="{ speed: 5 }"
     />
     <img
       src="../assets/images/mountain1.svg"
@@ -52,7 +52,12 @@
       id="left-far-mountain"
       loading="lazy"
     />
-    <img src="../assets/images/mountain2.svg" alt="mountain" id="center-mountain" loading="lazy" />
+    <img
+      src="../assets/images/mountain2.svg"
+      alt="mountain"
+      id="center-mountain"
+      loading="lazy"
+    />
     <div v-if="avatar === 'Avatar: The Last API'">
       <img
         src="../assets/images/aang3.svg"
@@ -76,7 +81,7 @@
 export default {
   name: "Background",
   props: {
-    avatar: String
+    avatar: String,
   }
 };
 </script>

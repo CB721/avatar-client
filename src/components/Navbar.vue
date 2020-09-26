@@ -61,6 +61,7 @@ export default {
   },
   watch: {
     selected() {
+      console.log(this.selected)
       if (this.selected) {
         this.scrollToSection(this.selected);
         this.selected = "";

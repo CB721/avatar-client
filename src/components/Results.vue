@@ -1,6 +1,5 @@
 <template>
-  <section class="results bg-color shadow border">
-    <div id="results" />
+  <section v-if="results.length" class="results bg-color shadow border">
     <h3>Results</h3>
     <div class="results-box bg-color-black border">{{results}}</div>
     <h3>Endpoint URL</h3>
@@ -42,6 +41,7 @@ export default {
   line-height: 1rem;
   padding: 1rem 0;
   margin: 1vh auto;
+  word-wrap: break-word;
 }
 .results-box {
   text-align: center;
