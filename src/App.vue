@@ -21,7 +21,7 @@
               rel="noopener"
               >Avatar: The Legend of Korra</a
             >
-            . Get details on the main characters, episodes and seasons. All
+            . Get details on the characters, episodes and seasons. All
             available without signing up for an API key!
           </p>
           <p>

@@ -18,7 +18,7 @@
 export default {
     name: "FilterItem",
     props: {
-        text: Object || String,
+        text: [Object, String],
         section: String,
         action: Function,
         subFilters: Array

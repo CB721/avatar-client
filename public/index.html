@@ -4,13 +4,21 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="API documentation on the TV shows Avatar: The Last Airbender and Avatar: The Legend of Korra.">
+  <meta name="description"
+    content="API documentation on the TV shows Avatar: The Last Airbender and Avatar: The Legend of Korra.">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link crossorigin="anonymous" rel="preload" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-    as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <!-- <link rel="apple-touch-icon" sizes="180x180" href="Logo/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="Logo/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="Logo/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="Logo/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="Logo/android-chrome-512x512.png"> -->
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <link crossorigin="anonymous" rel="preload" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" crossorigin="anonymous">
-    </noscript>
+  </noscript>
   <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 
@@ -20,6 +28,21 @@
       Please enable it to continue.</strong>
   </noscript>
   <div id="app"></div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('worker.js').then(function (registration) {
+          console.log('Worker registration successful', registration.scope);
+        }, function (err) {
+          console.log('Worker registration failed', err);
+        }).catch(function (err) {
+          console.log(err);
+        });
+      });
+    } else {
+      console.log('Service Worker is not supported by browser.');
+    }
+  </script>
 </body>
 
 </html>

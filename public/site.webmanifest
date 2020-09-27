@@ -1,0 +1,9 @@
+{
+    "name": "Avatar: The Last API",
+    "short_name": "Avatar API",
+    "start_url": "index.html",
+    "background_color": "rgb(39, 38, 38)",
+    "theme_color": "rgb(151, 192, 230)",
+    "description": "An API of information from the TV shows Avatar: The Last Airbender and Avatar: The Legend of Korra.  Get details on the characters, episodes and seasons.  As well as over 500 quotes from the characters.",
+    "display": "standalone"
+}
