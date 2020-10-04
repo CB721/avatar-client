@@ -32,7 +32,7 @@
             <a href="#get-key">API key</a> today!
           </p>
           <p>
-            All of the information is return as JSON. If you request data in a
+            All of the information is returned as JSON. If you request data in a
             different format, you will not receive the applicable information.
           </p>
         </section>
