@@ -1,6 +1,5 @@
 const CACHE_NAME = 'static-cache-v1';
 const DATA_CACHE_NAME = 'data-cache-v1'
-// var CACHE_NAME = 'pwa-task-manager';
 const files = [
     '/',
     '/completed',
@@ -36,7 +35,6 @@ self.addEventListener('install', event => {
 
 // Cache and return requests
 self.addEventListener('fetch', event => {
-    console.log(event.request.url)
     if (event.request.url.includes("/api/")) {
         event.respondWith(
             caches.open(DATA_CACHE_NAME)
