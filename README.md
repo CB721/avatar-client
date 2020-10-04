@@ -15,14 +15,14 @@ Can sort by:
 * Elements they can bend
 
 Example:
-![Character request](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/character-example.png?raw=true)
+![Character request](https://github.com/CB721/avatar-client/blob/master/src/assets/images/character-example.png?raw=true)
 
 #### <ins>Elements</ins>
 Information available:
 * Type
 
 Example:
-![Element request](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/element-example.png?raw=true)
+![Element request](https://github.com/CB721/avatar-client/blob/master/src/assets/images/element-example.png?raw=true)
 
 #### <ins>Episodes</ins>
 Information available:
@@ -31,7 +31,7 @@ Information available:
 * Season
 
 Example:
-![Episode request](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/episode-example.png?raw=true)
+![Episode request](https://github.com/CB721/avatar-client/blob/master/src/assets/images/episode-example.png?raw=true)
 
 #### <ins>Quotes</ins>
 * Randomly selected from over 500 available quotes
@@ -44,17 +44,20 @@ Can sort by:
 * Character
 * Episode
 * Season
+
+Example:
+![Quote request](https://github.com/CB721/avatar-client/blob/master/src/assets/images/quote-example.png?raw=true)
+
 #### <ins>Seasons</ins>
 Information available:
 * Title
 * Number of episodes
 
-
 Example:
-![Quote request](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/quote-example.png)?raw=true
+![Season request](https://github.com/CB721/avatar-client/blob/master/src/assets/images/season-example.png?raw=true)
 
 #### Documentation Page
-![Client-side documentation](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/v1-screenshot.png?raw=true)
+![Client-side documentation](https://github.com/CB721/avatar-client/blob/master/src/assets/images/v1-screenshot.png?raw=true)
 
 ##### Repositories
 * [Documentation](https://github.com/CB721/avatar-client)
@@ -65,6 +68,7 @@ Example:
     1) Vue
     2) Axios
     3) Vue Rellax 
+    4) Pixelmator
 #### Back-end
     1) Express
     2) PostgreSQL
