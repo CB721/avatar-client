@@ -65,15 +65,15 @@ Example:
 
 ### Technologies Used
 #### Front-end
-    1) Vue
-    2) Axios
-    3) Vue Rellax 
-    4) Pixelmator
+    1) Vue - UI/UX
+    2) Axios - API requests
+    3) Vue Rellax - Parallax effect on arrow
+    4) Pixelmator - Create custom svgs for background
 #### Back-end
-    1) Express
-    2) PostgreSQL
-    3) Memory Cache
-    4) CORS
+    1) Express - Server and endpoints
+    2) PostgreSQL - Store and query data
+    3) Memory Cache - Save request to cache for faster responses
+    4) CORS - Enable requests to API from any URL
 
 ## Author
 * Clint Brodar
