@@ -15,14 +15,14 @@ Can sort by:
 * Elements they can bend
 
 Example:
-![Character request](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/character-example.png)
+![Character request](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/character-example.png?raw=true)
 
 #### <ins>Elements</ins>
 Information available:
 * Type
 
 Example:
-![Element request](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/element-example.png)
+![Element request](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/element-example.png?raw=true)
 
 #### <ins>Episodes</ins>
 Information available:
@@ -31,7 +31,7 @@ Information available:
 * Season
 
 Example:
-![Episode request](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/episode-example.png)
+![Episode request](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/episode-example.png?raw=true)
 
 #### <ins>Quotes</ins>
 * Randomly selected from over 500 available quotes
@@ -51,10 +51,10 @@ Information available:
 
 
 Example:
-![Quote request](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/quote-example.png)
+![Quote request](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/quote-example.png)?raw=true
 
 #### Documentation Page
-![Client-side documentation](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/v1-screenshot.png)
+![Client-side documentation](https://raw.githubusercontent.com/CB721/avatar-client/3279ce4fb2b35c8a557aa0882bce3279a200a442/src/assets/images/v1-screenshot.png?raw=true)
 
 ##### Repositories
 * [Documentation](https://github.com/CB721/avatar-client)
