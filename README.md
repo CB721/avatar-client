@@ -68,7 +68,7 @@ Example:
     1) Vue - UI/UX
     2) Axios - API requests
     3) Vue Rellax - Parallax effect on arrow
-    4) Pixelmator - Create custom svgs for background
+    4) Pixelmator - Create custom SVGs for background
 #### Back-end
     1) Express - Server and endpoints
     2) PostgreSQL - Store and query data
